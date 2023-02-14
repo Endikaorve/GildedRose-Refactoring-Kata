@@ -19,23 +19,20 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      const itemName = this.items[i].name
-      const itemQuality = this.items[i].quality
+      // Calidad mayor de 50 de cualquier objeto
+      if (this.hasMaxQuality(i)) {
+        break
+      }
 
       // objeto Sulfuras
-      if (itemName === 'Sulfuras, Hand of Ragnaros') {
+      if (this.items[i].name === 'Sulfuras, Hand of Ragnaros') {
         break
       }
 
       this.decreaseSellInDate(i)
 
-      // Calidad mayor de 50 de cualquier objeto
-      if (itemQuality >= 50) {
-        break
-      }
-
       // Item concreto Aged Brie
-      if (itemName === 'Aged Brie') {
+      if (this.items[i].name === 'Aged Brie') {
         if (this.items[0].sellIn < 0) {
           this.increaseQuality(i)
         }
@@ -45,7 +42,7 @@ export class GildedRose {
       }
 
       // Item concreto Backstage passes to a TAFKAL80ETC concert
-      if (itemName === 'Backstage passes to a TAFKAL80ETC concert') {
+      if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
         this.increaseQuality(i)
         if (this.items[0].sellIn < 11) {
           this.increaseQuality(i)
@@ -62,7 +59,7 @@ export class GildedRose {
       }
 
       // Resto de items
-      if (itemQuality > 0) {
+      if (this.items[i].quality > 0) {
         if (this.items[0].sellIn < 0) {
           this.decreaseQuality(i)
         }
@@ -82,9 +79,11 @@ export class GildedRose {
     this.items[i].quality -= 1
   }
 
-  private
-
   private decreaseSellInDate(i: number) {
     this.items[i].sellIn -= 1
+  }
+
+  private hasMaxQuality(i: number) {
+    return this.items[i].quality === 50
   }
 }
