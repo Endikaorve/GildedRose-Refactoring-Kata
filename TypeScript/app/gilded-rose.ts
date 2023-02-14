@@ -18,24 +18,26 @@ export class GildedRose {
   }
 
   updateQuality() {
-    this.items.forEach(item => {
-      const productName = item.name
-
-      switch (productName) {
-        case 'Sulfuras, Hand of Ragnaros':
-          break
-        case 'Aged Brie':
-          this.upgradeAgedBrieQuality(item)
-          break
-        case 'Backstage passes to a TAFKAL80ETC concert':
-          this.upgradeBackStagePassQuality(item)
-          break
-        default:
-          this.upgradeOtherItemsQuality(item)
-      }
-    })
+    this.items.forEach(item => this.updateItem(item))
 
     return this.items
+  }
+
+  private updateItem(item: Item) {
+    const productName = item.name
+
+    switch (productName) {
+      case 'Sulfuras, Hand of Ragnaros':
+        break
+      case 'Aged Brie':
+        this.upgradeAgedBrieQuality(item)
+        break
+      case 'Backstage passes to a TAFKAL80ETC concert':
+        this.upgradeBackStagePassQuality(item)
+        break
+      default:
+        this.upgradeOtherItemsQuality(item)
+    }
   }
 
   private increaseQuality(item: Item) {
