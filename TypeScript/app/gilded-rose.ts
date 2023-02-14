@@ -20,14 +20,9 @@ export class GildedRose {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       const productName = this.items[i].name
-      // Calidad mayor de 50 de cualquier objeto
-      if (this.hasMaxQuality(i)) {
-        break
-      }
-
       // objeto Sulfuras
       if (productName === 'Sulfuras, Hand of Ragnaros') {
-        break
+        continue
       }
 
       this.decreaseSellInDate(i)
@@ -35,13 +30,13 @@ export class GildedRose {
       // Item concreto Aged Brie
       if (productName === 'Aged Brie') {
         this.upgradeAgedBrieQuality(i)
-        break
+        continue
       }
 
       // Item concreto Backstage passes to a TAFKAL80ETC concert
       if (productName === 'Backstage passes to a TAFKAL80ETC concert') {
         this.upgradeBackStagePassQuality(i)
-        break
+        continue
       }
 
       // Resto de items
@@ -72,6 +67,10 @@ export class GildedRose {
   }
 
   private upgradeBackStagePassQuality(i: number) {
+    if (this.hasMaxQuality(i)) {
+      return
+    }
+
     if (this.hasExpiredSellInDate(i)) {
       this.items[i].quality = 0
       return
@@ -94,6 +93,10 @@ export class GildedRose {
   }
 
   private upgradeAgedBrieQuality(i: number) {
+    if (this.hasMaxQuality(i)) {
+      return
+    }
+
     if (this.hasExpiredSellInDate(i)) {
       this.increaseQuality(i)
       this.increaseQuality(i)
@@ -104,6 +107,10 @@ export class GildedRose {
   }
 
   private upgradeOtherItemsQuality(i: number) {
+    if (this.hasMaxQuality(i)) {
+      return
+    }
+
     if (this.items[i].quality > 0) {
       if (this.hasExpiredSellInDate(i)) {
         this.decreaseQuality(i)
