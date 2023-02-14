@@ -34,11 +34,7 @@ export class GildedRose {
 
       // Item concreto Aged Brie
       if (productName === 'Aged Brie') {
-        if (this.hasExpiredSellInDate(i)) {
-          this.increaseQuality(i)
-        }
-
-        this.increaseQuality(i)
+        this.upgradeAgedBrieQuality(i)
         break
       }
 
@@ -95,6 +91,16 @@ export class GildedRose {
     }
 
     if (this.items[0].sellIn < 11) {
+      this.increaseQuality(i)
+      this.increaseQuality(i)
+      return
+    }
+
+    this.increaseQuality(i)
+  }
+
+  private upgradeAgedBrieQuality(i: number) {
+    if (this.hasExpiredSellInDate(i)) {
       this.increaseQuality(i)
       this.increaseQuality(i)
       return
