@@ -45,13 +45,7 @@ export class GildedRose {
       }
 
       // Resto de items
-      if (this.items[i].quality > 0) {
-        if (this.hasExpiredSellInDate(i)) {
-          this.decreaseQuality(i)
-        }
-
-        this.decreaseQuality(i)
-      }
+      this.upgradeOtherItemsQuality(i)
     }
 
     return this.items
@@ -107,5 +101,15 @@ export class GildedRose {
     }
 
     this.increaseQuality(i)
+  }
+
+  private upgradeOtherItemsQuality(i: number) {
+    if (this.items[i].quality > 0) {
+      if (this.hasExpiredSellInDate(i)) {
+        this.decreaseQuality(i)
+      }
+
+      this.decreaseQuality(i)
+    }
   }
 }
