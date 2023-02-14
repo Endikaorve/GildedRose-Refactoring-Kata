@@ -20,15 +20,14 @@ export class GildedRose {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       const itemName = this.items[i].name
-      let itemQuality = this.items[i].quality
-      let itemSellInDate = this.items[i].sellIn
+      const itemQuality = this.items[i].quality
 
       // objeto Sulfuras
       if (itemName === 'Sulfuras, Hand of Ragnaros') {
         break
       }
 
-      itemSellInDate = itemSellInDate - 1
+      this.decreaseSellInDate(i)
 
       // Calidad mayor de 50 de cualquier objeto
       if (itemQuality >= 50) {
@@ -37,47 +36,55 @@ export class GildedRose {
 
       // Item concreto Aged Brie
       if (itemName === 'Aged Brie') {
-        if (itemSellInDate < 0) {
-          itemQuality = itemQuality + 1
+        if (this.items[0].sellIn < 0) {
+          this.increaseQuality(i)
         }
 
-        itemQuality = itemQuality + 1
-
-        this.items[i].quality = itemQuality
-        this.items[i].sellIn = itemSellInDate
+        this.increaseQuality(i)
         break
       }
 
       // Item concreto Backstage passes to a TAFKAL80ETC concert
       if (itemName === 'Backstage passes to a TAFKAL80ETC concert') {
-        itemQuality = itemQuality + 1
-        if (itemSellInDate < 11) {
-          itemQuality = itemQuality + 1
+        this.increaseQuality(i)
+        if (this.items[0].sellIn < 11) {
+          this.increaseQuality(i)
         }
-        if (itemSellInDate < 6) {
-          itemQuality = itemQuality + 1
-        }
-
-        if (itemSellInDate <= 0) {
-          itemQuality = 0
+        if (this.items[0].sellIn < 6) {
+          this.increaseQuality(i)
         }
 
-        this.items[i].quality = itemQuality
-        this.items[i].sellIn = itemSellInDate
+        if (this.items[0].sellIn <= 0) {
+          this.items[i].quality = 0
+        }
+
         break
       }
 
+      // Resto de items
       if (itemQuality > 0) {
-        if (itemSellInDate < 0) {
-          itemQuality = itemQuality - 1
+        if (this.items[0].sellIn < 0) {
+          this.decreaseQuality(i)
         }
 
-        itemQuality = itemQuality - 1
-        this.items[i].quality = itemQuality
-        this.items[i].sellIn = itemSellInDate
+        this.decreaseQuality(i)
       }
     }
 
     return this.items
+  }
+
+  private increaseQuality(i: number) {
+    this.items[i].quality += 1
+  }
+
+  private decreaseQuality(i: number) {
+    this.items[i].quality -= 1
+  }
+
+  private
+
+  private decreaseSellInDate(i: number) {
+    this.items[i].sellIn -= 1
   }
 }
