@@ -14,11 +14,10 @@ export class AgedBrie extends InventoryItem {
     }
 
     if (this.hasExpiredSellInDate()) {
-      this.increaseQuality()
-      this.increaseQuality()
+      this.increaseQualityBy(2)
       return
     }
 
-    this.increaseQuality()
+    this.increaseQualityBy(1)
   }
 }

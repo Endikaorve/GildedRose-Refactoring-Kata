@@ -19,18 +19,15 @@ export class BackstagePass extends InventoryItem {
     }
 
     if (this.item.sellIn < 6) {
-      this.increaseQuality()
-      this.increaseQuality()
-      this.increaseQuality()
+      this.increaseQualityBy(3)
       return
     }
 
     if (this.item.sellIn < 11) {
-      this.increaseQuality()
-      this.increaseQuality()
+      this.increaseQualityBy(2)
       return
     }
 
-    this.increaseQuality()
+    this.increaseQualityBy(1)
   }
 }

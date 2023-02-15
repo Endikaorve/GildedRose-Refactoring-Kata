@@ -7,8 +7,8 @@ export abstract class InventoryItem {
     this.item = item
   }
 
-  protected increaseQuality() {
-    this.item.quality += 1
+  protected increaseQualityBy(quantity: number) {
+    this.item.quality += quantity
   }
 
   protected decreaseQuality() {
