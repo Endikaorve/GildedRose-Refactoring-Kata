@@ -1,8 +1,8 @@
 import { Item } from './gilded-rose'
-import { Sulfuras } from './Sulfuras'
-import { AgedBrie } from './AgedBrie'
-import { BackstagePass } from './BackstagePass'
-import { CommonItem } from './CommonItem'
+import { Sulfuras } from './Items/Sulfuras'
+import { AgedBrie } from './Items/AgedBrie'
+import { BackstagePass } from './Items/BackstagePass'
+import { CommonItem } from './Items/CommonItem'
 
 export const createInventoryItem = (item: Item) => {
   if (item.name === 'Sulfuras, Hand of Ragnaros') {
