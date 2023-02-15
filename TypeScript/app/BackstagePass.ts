@@ -18,16 +18,20 @@ export class BackstagePass extends InventoryItem {
       return
     }
 
-    if (this.item.sellIn < 6) {
+    if (this.isTheConcertDueInLessThan(6)) {
       this.increaseQualityBy(3)
       return
     }
 
-    if (this.item.sellIn < 11) {
+    if (this.isTheConcertDueInLessThan(10)) {
       this.increaseQualityBy(2)
       return
     }
 
     this.increaseQualityBy(1)
+  }
+
+  private isTheConcertDueInLessThan(days: number) {
+    return this.item.sellIn < days
   }
 }
