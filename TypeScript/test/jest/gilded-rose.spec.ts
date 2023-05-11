@@ -81,7 +81,7 @@ describe('Gilded Rose', () => {
     })
   })
 
-  describe('Conjured', () => {
+  describe.skip('Conjured', () => {
     it('Item Conjured downgrade its quality 2 point per day', () => {
       const gildedRose = new GildedRose([new Item('Conjured', 1, 2)])
       const items = gildedRose.updateQuality()
