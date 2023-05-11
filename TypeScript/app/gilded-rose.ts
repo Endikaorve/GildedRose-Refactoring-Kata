@@ -1,7 +1,15 @@
 import { createInventoryItem } from './createInventoryItem'
 
 export class Item {
-  constructor(public name: string, public sellIn: number, public quality: number) {}
+  name: string
+  sellIn: number
+  quality: number
+
+  constructor(name, sellIn, quality) {
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
+  }
 }
 
 export class GildedRose {
