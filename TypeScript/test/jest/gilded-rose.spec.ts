@@ -81,11 +81,17 @@ describe('Gilded Rose', () => {
     })
   })
 
-  describe.skip('Conjured', () => {
+  describe('Conjured', () => {
     it('Item Conjured downgrade its quality 2 point per day', () => {
       const gildedRose = new GildedRose([new Item('Conjured', 1, 2)])
       const items = gildedRose.updateQuality()
       expect(items[0].quality).toBe(0)
+    })
+
+    it('if sellIn date has expired the quality of an item downgrade 4 points per day', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 0, 12)])
+      const items = gildedRose.updateQuality()
+      expect(items[0].quality).toBe(8)
     })
 
     it('Item Conjured quality can never be negative', () => {
