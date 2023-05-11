@@ -6,29 +6,25 @@ describe('Gilded Rose', () => {
 
     describe('SellIn', () => {
       it('it downgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].sellIn).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.sellIn).toBe(0)
       })
     })
 
     describe('Quality', () => {
       it('it downgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.quality).toBe(0)
       })
 
       it('if sellIn date has expired it downgrades 2 points per day (twice)', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 0, 12)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(10)
+        const item = updateGildedRoseWithOneItem(itemName, 0, 12)
+        expect(item.quality).toBe(10)
       })
 
       it('it can never be negative', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 0, 0)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 0, 0)
+        expect(item.quality).toBe(0)
       })
     })
   })
@@ -38,29 +34,25 @@ describe('Gilded Rose', () => {
 
     describe('SellIn', () => {
       it('it downgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].sellIn).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.sellIn).toBe(0)
       })
     })
 
     describe('Quality', () => {
       it('it upgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(2)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.quality).toBe(2)
       })
 
       it('if sellIn date has expired it upgrades 2 points per day (twice)', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 0, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(3)
+        const item = updateGildedRoseWithOneItem(itemName, 0, 1)
+        expect(item.quality).toBe(3)
       })
 
       it('it has limit of 50 points', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 50)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(50)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 50)
+        expect(item.quality).toBe(50)
       })
     })
   })
@@ -69,15 +61,13 @@ describe('Gilded Rose', () => {
     const itemName = 'Sulfuras, Hand of Ragnaros'
 
     it('it does not modify its quality over time', () => {
-      const gildedRose = new GildedRose([new Item(itemName, 1, 80)])
-      const items = gildedRose.updateQuality()
-      expect(items[0].quality).toBe(80)
+      const item = updateGildedRoseWithOneItem(itemName, 1, 80)
+      expect(item.quality).toBe(80)
     })
 
     it('it does not modify its sellIn over time', () => {
-      const gildedRose = new GildedRose([new Item(itemName, 1, 80)])
-      const items = gildedRose.updateQuality()
-      expect(items[0].sellIn).toBe(1)
+      const item = updateGildedRoseWithOneItem(itemName, 1, 80)
+      expect(item.sellIn).toBe(1)
     })
   })
 
@@ -86,41 +76,35 @@ describe('Gilded Rose', () => {
 
     describe('SellIn', () => {
       it('it downgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].sellIn).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.sellIn).toBe(0)
       })
     })
 
     describe('Quality', () => {
       it('it upgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 20, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(2)
+        const item = updateGildedRoseWithOneItem(itemName, 20, 1)
+        expect(item.quality).toBe(2)
       })
 
       it('it upgrades 2 points if sellIn date is between 10 and 6 days', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 10, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(3)
+        const item = updateGildedRoseWithOneItem(itemName, 10, 1)
+        expect(item.quality).toBe(3)
       })
 
       it('it upgrades 3 points if sellIn date is between 5 and 1 days', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 5, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(4)
+        const item = updateGildedRoseWithOneItem(itemName, 5, 1)
+        expect(item.quality).toBe(4)
       })
 
       it('it drops to 0 points if sellIn date has expired', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 0, 10)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 0, 10)
+        expect(item.quality).toBe(0)
       })
 
       it('it has limit of 50 points', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 50)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(50)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 50)
+        expect(item.quality).toBe(50)
       })
     })
   })
@@ -130,34 +114,36 @@ describe('Gilded Rose', () => {
 
     describe('SellIn', () => {
       it('it downgrades 1 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 1)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].sellIn).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 1)
+        expect(item.sellIn).toBe(0)
       })
     })
 
     describe('Quality', () => {
       it('it downgrades 2 point per day', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 2)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(0)
+        const item = updateGildedRoseWithOneItem(itemName, 1, 2)
+        expect(item.quality).toBe(0)
       })
 
       it('if sellIn date has expired it downgrades 4 points per day (twice)', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 0, 12)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(8)
+        const item = updateGildedRoseWithOneItem(itemName, 0, 12)
+        expect(item.quality).toBe(8)
       })
 
       it('it can never be negative', () => {
-        const gildedRose = new GildedRose([new Item(itemName, 1, 0)])
-        const items = gildedRose.updateQuality()
-        expect(items[0].quality).toBe(0)
+        const item1 = updateGildedRoseWithOneItem(itemName, 1, 0)
+        const item2 = updateGildedRoseWithOneItem(itemName, 0, 0)
 
-        const gildedRose2 = new GildedRose([new Item(itemName, 0, 0)])
-        const items2 = gildedRose2.updateQuality()
-        expect(items2[0].quality).toBe(0)
+        expect(item1.quality).toBe(0)
+        expect(item2.quality).toBe(0)
       })
     })
   })
 })
+
+const updateGildedRoseWithOneItem = (name: string, sellIn: number, quality: number) => {
+  const gildedRose = new GildedRose([new Item(name, sellIn, quality)])
+  const items = gildedRose.updateQuality()
+
+  return items[0]
+}
