@@ -14,12 +14,6 @@ describe('Gilded Rose', () => {
       expect(items[0].quality).toBe(0)
     })
 
-    it('the quality of an item downgrade 1 point per day', () => {
-      const gildedRose = new GildedRose([new Item('Elixir of the Mongoose', 1, 1)])
-      const items = gildedRose.updateQuality()
-      expect(items[0].quality).toBe(0)
-    })
-
     it('if sellIn date has expired the quality of an item downgrade 2 points per day', () => {
       const gildedRose = new GildedRose([new Item('Elixir of the Mongoose', 0, 12)])
       const items = gildedRose.updateQuality()
@@ -82,6 +76,20 @@ describe('Gilded Rose', () => {
 
     it('Item Backstage passes to a TAFKAL80ETC concert, drops its quality to 0 points if sellIn date has expired', () => {
       const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 0, 10)])
+      const items = gildedRose.updateQuality()
+      expect(items[0].quality).toBe(0)
+    })
+  })
+
+  describe('Conjured', () => {
+    it('Item Conjured downgrade its quality 2 point per day', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 1, 2)])
+      const items = gildedRose.updateQuality()
+      expect(items[0].quality).toBe(0)
+    })
+
+    it('Item Conjured quality can never be negative', () => {
+      const gildedRose = new GildedRose([new Item('Conjured', 1, 1)])
       const items = gildedRose.updateQuality()
       expect(items[0].quality).toBe(0)
     })
