@@ -1,9 +1,5 @@
 import { Item } from './gilded-rose'
-import { SulfurasItem } from './Items/Sulfuras'
-import { AgedBrieItem } from './Items/AgedBrie'
-import { BackstagePassItem } from './Items/BackstagePass'
-import { CommonItem } from './Items/Common'
-import { ConjuredItem } from './Items/Conjured'
+import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem } from './Items'
 
 const itemsDictionary = {
   'Sulfuras, Hand of Ragnaros': SulfurasItem,
