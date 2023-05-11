@@ -2,7 +2,7 @@ import { Item } from './gilded-rose'
 import { Sulfuras } from './Items/Sulfuras'
 import { AgedBrie } from './Items/AgedBrie'
 import { BackstagePass } from './Items/BackstagePass'
-import { CommonItem } from './Items/CommonItem'
+import { CommonItem } from './Items/Common'
 
 const itemsDictionary = {
   'Sulfuras, Hand of Ragnaros': Sulfuras,
