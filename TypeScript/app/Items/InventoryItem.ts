@@ -11,8 +11,8 @@ export abstract class InventoryItem {
     this.item.quality += quantity
   }
 
-  protected decreaseQuality() {
-    this.item.quality -= 1
+  protected decreaseQualityBy(quantity: number) {
+    this.item.quality -= quantity
   }
 
   protected decreaseSellInDate() {

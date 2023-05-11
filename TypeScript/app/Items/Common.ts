@@ -15,10 +15,10 @@ export class CommonItem extends InventoryItem {
 
     if (this.item.quality > 0) {
       if (this.hasExpiredSellInDate()) {
-        this.decreaseQuality()
+        this.decreaseQualityBy(1)
       }
 
-      this.decreaseQuality()
+      this.decreaseQualityBy(1)
     }
   }
 }
