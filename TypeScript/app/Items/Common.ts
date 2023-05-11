@@ -9,13 +9,10 @@ export class CommonItem extends InventoryItem {
   upgrade() {
     this.decreaseSellInDate()
 
-    if (this.hasMaxQuality()) {
-      return
-    }
-
     if (this.item.quality > 0) {
       if (this.hasExpiredSellInDate()) {
-        this.decreaseQualityBy(1)
+        this.decreaseQualityBy(2)
+        return
       }
 
       this.decreaseQualityBy(1)

@@ -9,10 +9,6 @@ export class ConjuredItem extends InventoryItem {
   upgrade() {
     this.decreaseSellInDate()
 
-    if (this.hasMaxQuality()) {
-      return
-    }
-
     if (this.item.quality === 1) {
       this.item.quality = 0
     }
