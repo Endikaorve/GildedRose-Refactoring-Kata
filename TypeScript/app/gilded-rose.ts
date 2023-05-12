@@ -20,7 +20,7 @@ export class GildedRose {
       }
 
       updateSellIn(item);
-      updateQuality1(item);
+      updateQuality(item);
     });
 
     return this.items;
@@ -31,7 +31,7 @@ const updateSellIn = (item: Item) => {
   item.sellIn = item.sellIn - 1;
 };
 
-const updateQuality1 = (item: Item) => {
+const updateQuality = (item: Item) => {
   if (item.name === "Aged Brie") {
     if (item.quality < 50) {
       item.quality = item.quality + 1;
