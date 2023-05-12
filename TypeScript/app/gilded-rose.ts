@@ -19,7 +19,7 @@ export class GildedRose {
         return;
       }
 
-      updateSellIn(item);
+      item.sellIn = item.sellIn - 1;
 
       if (item.name === "Aged Brie") {
         item.quality = item.quality + 1;
@@ -73,7 +73,3 @@ export class GildedRose {
     return this.items;
   }
 }
-
-const updateSellIn = (item: Item) => {
-  item.sellIn = item.sellIn - 1;
-};
