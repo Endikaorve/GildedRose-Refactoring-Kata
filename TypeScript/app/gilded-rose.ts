@@ -34,6 +34,10 @@ export class GildedRose {
       return new BackstageItem(item);
     }
 
+    if (item.name.includes("Conjured")) {
+      return new ConjuredItem(item);
+    }
+
     return new CommonItem(item);
   }
 }
@@ -146,6 +150,24 @@ class CommonItem extends InventoryItem {
 
     if (this.isAfterDeadline()) {
       this.decreaseQualityBy(1);
+    }
+
+    this.forceQualityIntoValidRange();
+  }
+}
+
+class ConjuredItem extends InventoryItem {
+  constructor(item: Item) {
+    super(item);
+  }
+
+  upgrade() {
+    this.decreaseSellIn();
+
+    this.decreaseQualityBy(2);
+
+    if (this.isAfterDeadline()) {
+      this.decreaseQualityBy(2);
     }
 
     this.forceQualityIntoValidRange();
