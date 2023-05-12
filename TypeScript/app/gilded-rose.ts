@@ -30,18 +30,7 @@ export class GildedRose {
         return;
       }
 
-      // Item común
-      item.sellIn = item.sellIn - 1;
-
-      item.quality = item.quality - 1;
-
-      if (item.sellIn < 0) {
-        item.quality = item.quality - 1;
-      }
-
-      if (item.quality < 0) {
-        item.quality = 0;
-      }
+      this.updateCommon(item);
     });
 
     return this.items;
@@ -83,6 +72,20 @@ export class GildedRose {
 
     if (item.quality > 50) {
       item.quality = 50;
+    }
+  }
+
+  private updateCommon(item: Item) {
+    item.sellIn = item.sellIn - 1;
+
+    item.quality = item.quality - 1;
+
+    if (item.sellIn < 0) {
+      item.quality = item.quality - 1;
+    }
+
+    if (item.quality < 0) {
+      item.quality = 0;
     }
   }
 }
