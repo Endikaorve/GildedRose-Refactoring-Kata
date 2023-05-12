@@ -22,7 +22,8 @@ export class GildedRose {
       }
 
       if (item.name === "Aged Brie") {
-        this.updateAgedBrie(item);
+        const agedBrie = new AgedBrieItem(item);
+        agedBrie.upgrade();
         return;
       }
 
@@ -35,22 +36,6 @@ export class GildedRose {
     });
 
     return this.items;
-  }
-
-  private updateSulfuras(item: Item) {}
-
-  private updateAgedBrie(item: Item) {
-    item.sellIn = item.sellIn - 1;
-
-    item.quality = item.quality + 1;
-
-    if (item.sellIn < 0) {
-      item.quality = item.quality + 1;
-    }
-
-    if (item.quality > 50) {
-      item.quality = 50;
-    }
   }
 
   private updateBackstage(item: Item) {
@@ -104,5 +89,25 @@ class SulfurasItem extends InventoryItem {
 
   upgrade() {
     return;
+  }
+}
+
+class AgedBrieItem extends InventoryItem {
+  constructor(item: Item) {
+    super(item);
+  }
+
+  upgrade() {
+    this.item.sellIn = this.item.sellIn - 1;
+
+    this.item.quality = this.item.quality + 1;
+
+    if (this.item.sellIn < 0) {
+      this.item.quality = this.item.quality + 1;
+    }
+
+    if (this.item.quality > 50) {
+      this.item.quality = 50;
+    }
   }
 }
