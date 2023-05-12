@@ -63,10 +63,24 @@ const updateQuality1 = (item: Item) => {
       item.quality = 50;
     }
 
+    if (item.sellIn >= 0) {
+      return;
+    }
+
+    item.quality = 0;
+
     return;
   }
 
   // Item común
+  if (item.quality > 0) {
+    item.quality = item.quality - 1;
+  }
+
+  if (item.sellIn >= 0) {
+    return;
+  }
+
   if (item.quality > 0) {
     item.quality = item.quality - 1;
   }
@@ -82,13 +96,6 @@ const updateQuality2 = (item: Item) => {
   }
 
   if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-    item.quality = item.quality - item.quality;
-
     return;
-  }
-
-  // Item común
-  if (item.quality > 0) {
-    item.quality = item.quality - 1;
   }
 };
