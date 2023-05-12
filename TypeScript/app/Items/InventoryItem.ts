@@ -1,5 +1,8 @@
 import { Item } from '../gilded-rose'
 
+const MAX_QUALITY = 50
+const MIN_QUALITY = 0
+
 export abstract class InventoryItem {
   item: Item
 
@@ -20,19 +23,19 @@ export abstract class InventoryItem {
   }
 
   protected hasExceededMinQuality() {
-    return this.item.quality < 0
+    return this.item.quality < MIN_QUALITY
   }
 
   protected setMinQuality() {
-    this.item.quality = 0
+    this.item.quality = MIN_QUALITY
   }
 
   protected hasExceededMaxQuality() {
-    return this.item.quality > 50
+    return this.item.quality > MAX_QUALITY
   }
 
   protected setMaxQuality() {
-    this.item.quality = 50
+    this.item.quality = MAX_QUALITY
   }
 
   protected hasExpiredSellInDate() {
