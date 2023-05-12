@@ -1,19 +1,21 @@
 import { Item } from './gilded-rose'
-import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem, InventoryItem } from './Items'
-
-const itemsDictionary = {
-  'Sulfuras, Hand of Ragnaros': SulfurasItem,
-  'Aged Brie': AgedBrieItem,
-  'Backstage passes to a TAFKAL80ETC concert': BackstagePassItem
-}
+import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem } from './Items'
 
 export const createInventoryItem = (item: Item) => {
   return new (getItemClass(item.name))(item)
 }
 
 const getItemClass = (itemName: string) => {
-  if (itemsDictionary[itemName]) {
-    return itemsDictionary[itemName]
+  if (itemName === 'Sulfuras, Hand of Ragnaros') {
+    return SulfurasItem
+  }
+
+  if (itemName === 'Aged Brie') {
+    return AgedBrieItem
+  }
+
+  if (itemName === 'Backstage passes to a TAFKAL80ETC concert') {
+    return BackstagePassItem
   }
 
   if (itemName.startsWith('Conjured')) {
