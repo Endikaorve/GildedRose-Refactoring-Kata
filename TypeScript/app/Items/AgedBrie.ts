@@ -15,8 +15,6 @@ export class AgedBrieItem extends InventoryItem {
       this.increaseQualityBy(1)
     }
 
-    if (this.hasExceededMaxQuality()) {
-      this.setMaxQuality()
-    }
+    this.forceQualityIntoValidRange()
   }
 }

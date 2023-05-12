@@ -15,8 +15,6 @@ export class CommonItem extends InventoryItem {
       this.decreaseQualityBy(1)
     }
 
-    if (this.hasExceededMinQuality()) {
-      this.setMinQuality()
-    }
+    this.forceQualityIntoValidRange()
   }
 }

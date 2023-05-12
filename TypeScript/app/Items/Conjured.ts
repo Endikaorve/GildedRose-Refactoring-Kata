@@ -15,8 +15,6 @@ export class ConjuredItem extends InventoryItem {
       this.decreaseQualityBy(2)
     }
 
-    if (this.hasExceededMinQuality()) {
-      this.setMinQuality()
-    }
+    this.forceQualityIntoValidRange()
   }
 }
