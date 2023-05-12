@@ -9,15 +9,14 @@ export class AgedBrieItem extends InventoryItem {
   upgrade() {
     this.decreaseSellInDate()
 
-    if (this.hasMaxQuality()) {
-      return
-    }
+    this.increaseQualityBy(1)
 
     if (this.hasExpiredSellInDate()) {
-      this.increaseQualityBy(2)
-      return
+      this.increaseQualityBy(1)
     }
 
-    this.increaseQualityBy(1)
+    if (this.hasExceededMaxQuality()) {
+      this.setMaxQuality()
+    }
   }
 }

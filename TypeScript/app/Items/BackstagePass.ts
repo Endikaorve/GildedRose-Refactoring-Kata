@@ -9,26 +9,24 @@ export class BackstagePassItem extends InventoryItem {
   upgrade() {
     this.decreaseSellInDate()
 
-    if (this.hasMaxQuality()) {
-      return
-    }
-
     if (this.hasExpiredSellInDate()) {
       this.item.quality = 0
       return
     }
 
-    if (this.isTheConcertDueInLessThan(6)) {
-      this.increaseQualityBy(3)
-      return
-    }
+    this.increaseQualityBy(1)
 
     if (this.isTheConcertDueInLessThan(10)) {
-      this.increaseQualityBy(2)
-      return
+      this.increaseQualityBy(1)
     }
 
-    this.increaseQualityBy(1)
+    if (this.isTheConcertDueInLessThan(6)) {
+      this.increaseQualityBy(1)
+    }
+
+    if (this.hasExceededMaxQuality()) {
+      this.setMaxQuality()
+    }
   }
 
   private isTheConcertDueInLessThan(days: number) {
