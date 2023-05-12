@@ -19,12 +19,20 @@ export abstract class InventoryItem {
     this.item.sellIn -= 1
   }
 
+  protected hasExceededMinQuality() {
+    return this.item.quality < 0
+  }
+
+  protected setMinQuality() {
+    this.item.quality = 0
+  }
+
   protected hasExceededMaxQuality() {
     return this.item.quality > 50
   }
 
   protected setMaxQuality() {
-    return (this.item.quality = 50)
+    this.item.quality = 50
   }
 
   protected hasExpiredSellInDate() {
