@@ -118,7 +118,7 @@ describe('Gilded Rose', () => {
     })
   })
 
-  describe.skip('Conjured', () => {
+  describe('Conjured', () => {
     const itemName = 'Conjured Sword'
 
     describe('SellIn', () => {
@@ -141,10 +141,13 @@ describe('Gilded Rose', () => {
 
       it('it can never be negative', () => {
         const item1 = updateGildedRoseWithOneItem(itemName, 1, 0)
-        const item2 = updateGildedRoseWithOneItem(itemName, 0, 0)
-
         expect(item1.quality).toBe(0)
+
+        const item2 = updateGildedRoseWithOneItem(itemName, 1, 1)
         expect(item2.quality).toBe(0)
+
+        const item3 = updateGildedRoseWithOneItem(itemName, 0, 3)
+        expect(item3.quality).toBe(0)
       })
     })
   })

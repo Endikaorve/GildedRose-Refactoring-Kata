@@ -9,16 +9,14 @@ export class ConjuredItem extends InventoryItem {
   upgrade() {
     this.decreaseSellInDate()
 
-    if (this.item.quality === 1) {
-      this.item.quality = 0
+    this.decreaseQualityBy(2)
+
+    if (this.hasExpiredSellInDate()) {
+      this.decreaseQualityBy(2)
     }
 
-    if (this.item.quality > 0) {
-      if (this.hasExpiredSellInDate()) {
-        this.decreaseQualityBy(2)
-      }
-
-      this.decreaseQualityBy(2)
+    if (this.hasExceededMinQuality()) {
+      this.setMinQuality()
     }
   }
 }
