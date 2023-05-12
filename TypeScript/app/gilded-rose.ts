@@ -16,7 +16,8 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item) => {
       if (item.name === "Sulfuras, Hand of Ragnaros") {
-        this.updateSulfuras(item);
+        const sulfuras = new SulfurasItem(item);
+        sulfuras.upgrade();
         return;
       }
 
@@ -87,5 +88,21 @@ export class GildedRose {
     if (item.quality < 0) {
       item.quality = 0;
     }
+  }
+}
+
+abstract class InventoryItem {
+  constructor(public item: Item) {}
+
+  abstract upgrade();
+}
+
+class SulfurasItem extends InventoryItem {
+  constructor(item: Item) {
+    super(item);
+  }
+
+  upgrade() {
+    return;
   }
 }
