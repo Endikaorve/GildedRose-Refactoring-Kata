@@ -21,7 +21,6 @@ export class GildedRose {
 
       updateSellIn(item);
       updateQuality1(item);
-      updateQuality2(item);
     });
 
     return this.items;
@@ -83,19 +82,5 @@ const updateQuality1 = (item: Item) => {
 
   if (item.quality > 0) {
     item.quality = item.quality - 1;
-  }
-};
-
-const updateQuality2 = (item: Item) => {
-  if (item.sellIn >= 0) {
-    return;
-  }
-
-  if (item.name === "Aged Brie") {
-    return;
-  }
-
-  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-    return;
   }
 };
