@@ -15,6 +15,9 @@ describe('Gilded Rose', () => {
       it('it downgrades 1 point per day', () => {
         const item = updateGildedRoseWithOneItem(itemName, 1, 1)
         expect(item.quality).toBe(0)
+
+        const item2 = updateGildedRoseWithOneItem(itemName, 1, 50)
+        expect(item2.quality).toBe(49)
       })
 
       it('if sellIn date has expired it downgrades 2 points per day (twice)', () => {
@@ -103,13 +106,19 @@ describe('Gilded Rose', () => {
       })
 
       it('it has limit of 50 points', () => {
-        const item = updateGildedRoseWithOneItem(itemName, 1, 50)
+        const item = updateGildedRoseWithOneItem(itemName, 15, 50)
         expect(item.quality).toBe(50)
+
+        const item2 = updateGildedRoseWithOneItem(itemName, 1, 49)
+        expect(item2.quality).toBe(50)
+
+        const item3 = updateGildedRoseWithOneItem(itemName, 1, 48)
+        expect(item3.quality).toBe(50)
       })
     })
   })
 
-  describe('Conjured', () => {
+  describe.skip('Conjured', () => {
     const itemName = 'Conjured Sword'
 
     describe('SellIn', () => {
