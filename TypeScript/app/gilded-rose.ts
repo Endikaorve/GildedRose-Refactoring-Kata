@@ -33,16 +33,14 @@ const updateSellIn = (item: Item) => {
 
 const updateQuality = (item: Item) => {
   if (item.name === "Aged Brie") {
-    if (item.quality < 50) {
+    item.quality = item.quality + 1;
+
+    if (item.sellIn < 0) {
       item.quality = item.quality + 1;
     }
 
-    if (item.sellIn >= 0) {
-      return;
-    }
-
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
+    if (item.quality > 50) {
+      item.quality = 50;
     }
 
     return;
