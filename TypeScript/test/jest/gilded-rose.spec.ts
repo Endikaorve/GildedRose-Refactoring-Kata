@@ -110,7 +110,7 @@ describe('Gilded Rose', () => {
   })
 
   describe('Conjured', () => {
-    const itemName = 'Conjured'
+    const itemName = 'Conjured Sword'
 
     describe('SellIn', () => {
       it('it downgrades 1 point per day', () => {
