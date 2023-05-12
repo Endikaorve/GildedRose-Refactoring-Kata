@@ -28,56 +28,41 @@ export class GildedRose {
       }
 
       if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        this.updateBackstage(item);
+        const backstage = new BackstageItem(item);
+        backstage.upgrade();
         return;
       }
 
-      this.updateCommon(item);
+      const common = new CommonItem(item);
+      common.upgrade();
     });
 
     return this.items;
-  }
-
-  private updateBackstage(item: Item) {
-    item.sellIn = item.sellIn - 1;
-
-    if (item.sellIn < 0) {
-      item.quality = 0;
-
-      return;
-    }
-
-    item.quality = item.quality + 1;
-
-    if (item.sellIn < 11) {
-      item.quality = item.quality + 1;
-    }
-    if (item.sellIn < 6) {
-      item.quality = item.quality + 1;
-    }
-
-    if (item.quality > 50) {
-      item.quality = 50;
-    }
-  }
-
-  private updateCommon(item: Item) {
-    item.sellIn = item.sellIn - 1;
-
-    item.quality = item.quality - 1;
-
-    if (item.sellIn < 0) {
-      item.quality = item.quality - 1;
-    }
-
-    if (item.quality < 0) {
-      item.quality = 0;
-    }
   }
 }
 
 abstract class InventoryItem {
   constructor(public item: Item) {}
+
+  protected decreaseSellIn() {
+    this.item.sellIn -= 1;
+  }
+
+  protected isAfterDeadline() {
+    return this.item.sellIn < 0;
+  }
+
+  protected increaseQualityBy(quantity: number) {
+    this.item.quality += quantity;
+  }
+
+  protected decreaseQualityBy(quantity: number) {
+    this.item.quality -= quantity;
+  }
+
+  protected setMinQuality() {
+    this.item.quality = 0;
+  }
 
   abstract upgrade();
 }
@@ -98,16 +83,70 @@ class AgedBrieItem extends InventoryItem {
   }
 
   upgrade() {
-    this.item.sellIn = this.item.sellIn - 1;
+    this.decreaseSellIn();
 
-    this.item.quality = this.item.quality + 1;
+    this.increaseQualityBy(1);
 
-    if (this.item.sellIn < 0) {
-      this.item.quality = this.item.quality + 1;
+    if (this.isAfterDeadline()) {
+      this.increaseQualityBy(1);
     }
 
     if (this.item.quality > 50) {
       this.item.quality = 50;
+    }
+  }
+}
+
+class BackstageItem extends InventoryItem {
+  constructor(item: Item) {
+    super(item);
+  }
+
+  upgrade() {
+    this.decreaseSellIn();
+
+    if (this.isAfterDeadline()) {
+      this.setMinQuality();
+
+      return;
+    }
+
+    this.increaseQualityBy(1);
+
+    if (this.areDaysUntilSellInLessThan(11)) {
+      this.increaseQualityBy(1);
+    }
+
+    if (this.areDaysUntilSellInLessThan(6)) {
+      this.increaseQualityBy(1);
+    }
+
+    if (this.item.quality > 50) {
+      this.item.quality = 50;
+    }
+  }
+
+  private areDaysUntilSellInLessThan(days: number) {
+    return this.item.sellIn < days;
+  }
+}
+
+class CommonItem extends InventoryItem {
+  constructor(item: Item) {
+    super(item);
+  }
+
+  upgrade() {
+    this.decreaseSellIn();
+
+    this.decreaseQualityBy(1);
+
+    if (this.isAfterDeadline()) {
+      this.decreaseQualityBy(1);
+    }
+
+    if (this.item.quality < 0) {
+      this.item.quality = 0;
     }
   }
 }
