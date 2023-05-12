@@ -6,7 +6,7 @@ export class BackstagePassItem extends InventoryItem {
     super(item)
   }
 
-  upgrade() {
+  update() {
     this.decreaseSellInDate()
 
     if (this.hasExpiredSellInDate()) {

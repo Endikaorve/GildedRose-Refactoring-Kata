@@ -6,7 +6,7 @@ export class SulfurasItem extends InventoryItem {
     super(item)
   }
 
-  upgrade() {
+  update() {
     return
   }
 }

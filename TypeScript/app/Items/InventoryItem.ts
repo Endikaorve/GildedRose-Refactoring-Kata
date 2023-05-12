@@ -30,5 +30,5 @@ export abstract class InventoryItem {
     return this.item.sellIn < 0
   }
 
-  abstract upgrade(): void
+  abstract update(): void
 }

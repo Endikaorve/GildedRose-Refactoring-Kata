@@ -6,7 +6,7 @@ export class ConjuredItem extends InventoryItem {
     super(item)
   }
 
-  upgrade() {
+  update() {
     this.decreaseSellInDate()
 
     this.decreaseQualityBy(2)

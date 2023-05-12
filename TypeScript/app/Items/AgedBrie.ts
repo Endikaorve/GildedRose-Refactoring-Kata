@@ -6,7 +6,7 @@ export class AgedBrieItem extends InventoryItem {
     super(item)
   }
 
-  upgrade() {
+  update() {
     this.decreaseSellInDate()
 
     this.increaseQualityBy(1)

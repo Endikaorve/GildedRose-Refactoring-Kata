@@ -16,7 +16,7 @@ export class GildedRose {
   constructor(public items: Item[]) {}
 
   updateQuality() {
-    this.items.forEach(item => createInventoryItem(item).upgrade())
+    this.items.forEach(item => createInventoryItem(item).update())
 
     return this.items
   }

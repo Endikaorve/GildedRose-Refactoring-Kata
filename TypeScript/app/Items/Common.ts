@@ -6,7 +6,7 @@ export class CommonItem extends InventoryItem {
     super(item)
   }
 
-  upgrade() {
+  update() {
     this.decreaseSellInDate()
 
     this.decreaseQualityBy(1)
