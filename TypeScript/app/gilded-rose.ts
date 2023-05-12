@@ -16,7 +16,7 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item) => {
       if (item.name === "Sulfuras, Hand of Ragnaros") {
-        this.updateSulfuras();
+        this.updateSulfuras(item);
         return;
       }
 
@@ -36,7 +36,7 @@ export class GildedRose {
     return this.items;
   }
 
-  private updateSulfuras() {}
+  private updateSulfuras(item: Item) {}
 
   private updateAgedBrie(item: Item) {
     item.sellIn = item.sellIn - 1;
