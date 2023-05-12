@@ -10,7 +10,7 @@ export class BackstagePassItem extends InventoryItem {
     this.decreaseSellInDate()
 
     if (this.hasExpiredSellInDate()) {
-      this.item.quality = 0
+      this.setMinQuality()
       return
     }
 
