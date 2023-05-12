@@ -15,33 +15,33 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      if (item.name === "Sulfuras, Hand of Ragnaros") {
-        const sulfuras = new SulfurasItem(item);
-        sulfuras.upgrade();
-        return;
-      }
-
-      if (item.name === "Aged Brie") {
-        const agedBrie = new AgedBrieItem(item);
-        agedBrie.upgrade();
-        return;
-      }
-
-      if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        const backstage = new BackstageItem(item);
-        backstage.upgrade();
-        return;
-      }
-
-      const common = new CommonItem(item);
-      common.upgrade();
+      this.getItemClass(item).upgrade();
     });
 
     return this.items;
   }
+
+  private getItemClass(item: Item) {
+    if (item.name === "Sulfuras, Hand of Ragnaros") {
+      return new SulfurasItem(item);
+    }
+
+    if (item.name === "Aged Brie") {
+      return new AgedBrieItem(item);
+    }
+
+    if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+      return new BackstageItem(item);
+    }
+
+    return new CommonItem(item);
+  }
 }
 
 abstract class InventoryItem {
+  private MIN_QUALITY = 0;
+  private MAX_QUALITY = 50;
+
   constructor(public item: Item) {}
 
   protected decreaseSellIn() {
@@ -61,7 +61,14 @@ abstract class InventoryItem {
   }
 
   protected setMinQuality() {
-    this.item.quality = 0;
+    this.item.quality = this.MIN_QUALITY;
+  }
+
+  protected forceQualityIntoValidRange() {
+    this.item.quality = Math.max(
+      this.MIN_QUALITY,
+      Math.min(this.MAX_QUALITY, this.item.quality)
+    );
   }
 
   abstract upgrade();
@@ -91,9 +98,7 @@ class AgedBrieItem extends InventoryItem {
       this.increaseQualityBy(1);
     }
 
-    if (this.item.quality > 50) {
-      this.item.quality = 50;
-    }
+    this.forceQualityIntoValidRange();
   }
 }
 
@@ -121,9 +126,7 @@ class BackstageItem extends InventoryItem {
       this.increaseQualityBy(1);
     }
 
-    if (this.item.quality > 50) {
-      this.item.quality = 50;
-    }
+    this.forceQualityIntoValidRange();
   }
 
   private areDaysUntilSellInLessThan(days: number) {
@@ -145,8 +148,6 @@ class CommonItem extends InventoryItem {
       this.decreaseQualityBy(1);
     }
 
-    if (this.item.quality < 0) {
-      this.item.quality = 0;
-    }
+    this.forceQualityIntoValidRange();
   }
 }
