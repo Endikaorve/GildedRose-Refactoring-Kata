@@ -28,31 +28,21 @@ export class GildedRose {
   }
 }
 
+const updaters = {
+  [ItemNames.SULFURAS]: updateSulfuras,
+  [ItemNames.AGED_BRIE]: updateAgedBrie,
+  [ItemNames.BACKSTAGE]: updateBackstage,
+};
+
 const update = (item: Item) => {
-  if (item.name === ItemNames.SULFURAS) {
-    updateSulfuras(item);
-    return;
-  }
-
-  if (item.name === ItemNames.AGED_BRIE) {
-    updateAgedBrie(item);
-    return;
-  }
-
-  if (item.name === ItemNames.BACKSTAGE) {
-    updateBackstage(item);
-    return;
-  }
-
-  // Item común
-  updateCommon(item);
+  (updaters[item.name] ?? updateCommon)(item);
 };
 
-const updateSulfuras = (item: Item) => {
+function updateSulfuras(item: Item) {
   return;
-};
+}
 
-const updateAgedBrie = (item: Item) => {
+function updateAgedBrie(item: Item) {
   decreaseSellIn(item);
 
   increaseQuality(item);
@@ -64,9 +54,9 @@ const updateAgedBrie = (item: Item) => {
   if (isHigherThenMaxQuality(item)) {
     setMaxQuality(item);
   }
-};
+}
 
-const updateBackstage = (item: Item) => {
+function updateBackstage(item: Item) {
   decreaseSellIn(item);
 
   if (hasSellInExpired(item)) {
@@ -87,9 +77,9 @@ const updateBackstage = (item: Item) => {
   if (isHigherThenMaxQuality(item)) {
     setMaxQuality(item);
   }
-};
+}
 
-const updateCommon = (item: Item) => {
+function updateCommon(item: Item) {
   decreaseSellIn(item);
 
   decreaseQuality(item);
@@ -101,7 +91,7 @@ const updateCommon = (item: Item) => {
   if (isLowerThanMinQuality(item)) {
     setMinQuality(item);
   }
-};
+}
 
 // UTILIDADES
 
