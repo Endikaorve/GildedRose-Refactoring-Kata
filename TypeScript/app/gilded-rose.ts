@@ -45,18 +45,7 @@ const update = (item: Item) => {
   }
 
   // Item común
-
-  decreaseSellIn(item);
-
-  decreaseQuality(item);
-
-  if (hasSellInExpired(item)) {
-    decreaseQuality(item);
-  }
-
-  if (isLowerThanMinQuality(item)) {
-    setMinQuality(item);
-  }
+  updateCommon(item);
 };
 
 const updateSulfuras = (item: Item) => {
@@ -97,6 +86,20 @@ const updateBackstage = (item: Item) => {
 
   if (isHigherThenMaxQuality(item)) {
     setMaxQuality(item);
+  }
+};
+
+const updateCommon = (item: Item) => {
+  decreaseSellIn(item);
+
+  decreaseQuality(item);
+
+  if (hasSellInExpired(item)) {
+    decreaseQuality(item);
+  }
+
+  if (isLowerThanMinQuality(item)) {
+    setMinQuality(item);
   }
 };
 
