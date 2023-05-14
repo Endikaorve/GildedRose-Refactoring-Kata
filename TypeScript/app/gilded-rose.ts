@@ -22,7 +22,6 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item) => {
       update(item);
-      updateQuality2(item);
     });
 
     return this.items;
@@ -98,20 +97,4 @@ const update = (item: Item) => {
   if (item.quality > 0) {
     item.quality = item.quality - 1;
   }
-};
-
-const updateQuality2 = (item: Item) => {
-  if (item.name === ItemNames.SULFURAS) {
-    return;
-  }
-
-  if (item.name === ItemNames.AGED_BRIE) {
-    return;
-  }
-
-  if (item.name === ItemNames.BACKSTAGE) {
-    return;
-  }
-
-  // Item común
 };
