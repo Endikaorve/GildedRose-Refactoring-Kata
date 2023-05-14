@@ -42,6 +42,8 @@ const updateQuality1 = (item: Item) => {
 
     item.quality = item.quality + 1;
 
+    item.sellIn = item.sellIn - 1;
+
     return;
   }
 
@@ -63,6 +65,8 @@ const updateQuality1 = (item: Item) => {
       }
     }
 
+    item.sellIn = item.sellIn - 1;
+
     return;
   }
 
@@ -71,6 +75,8 @@ const updateQuality1 = (item: Item) => {
   if (item.quality > 0) {
     item.quality = item.quality - 1;
   }
+
+  item.sellIn = item.sellIn - 1;
 };
 
 const updateSellIn = (item: Item) => {
@@ -79,18 +85,12 @@ const updateSellIn = (item: Item) => {
   }
 
   if (item.name === ItemNames.AGED_BRIE) {
-    item.sellIn = item.sellIn - 1;
     return;
   }
 
   if (item.name === ItemNames.BACKSTAGE) {
-    item.sellIn = item.sellIn - 1;
     return;
   }
-
-  // Item común
-
-  item.sellIn = item.sellIn - 1;
 };
 
 const updateQuality2 = (item: Item) => {
