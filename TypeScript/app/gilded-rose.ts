@@ -40,27 +40,7 @@ const update = (item: Item) => {
   }
 
   if (item.name === ItemNames.BACKSTAGE) {
-    decreaseSellIn(item);
-
-    if (hasSellInExpired(item)) {
-      setMinQuality(item);
-      return;
-    }
-
-    increaseQuality(item);
-
-    if (item.sellIn < 10) {
-      increaseQuality(item);
-    }
-
-    if (item.sellIn < 5) {
-      increaseQuality(item);
-    }
-
-    if (isHigherThenMaxQuality(item)) {
-      setMaxQuality(item);
-    }
-
+    updateBackstage(item);
     return;
   }
 
@@ -89,6 +69,29 @@ const updateAgedBrie = (item: Item) => {
   increaseQuality(item);
 
   if (hasSellInExpired(item)) {
+    increaseQuality(item);
+  }
+
+  if (isHigherThenMaxQuality(item)) {
+    setMaxQuality(item);
+  }
+};
+
+const updateBackstage = (item: Item) => {
+  decreaseSellIn(item);
+
+  if (hasSellInExpired(item)) {
+    setMinQuality(item);
+    return;
+  }
+
+  increaseQuality(item);
+
+  if (item.sellIn < 10) {
+    increaseQuality(item);
+  }
+
+  if (item.sellIn < 5) {
     increaseQuality(item);
   }
 
