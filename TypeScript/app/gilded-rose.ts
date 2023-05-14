@@ -74,6 +74,12 @@ const update = (item: Item) => {
 
     item.sellIn = item.sellIn - 1;
 
+    if (item.sellIn >= 0) {
+      return;
+    }
+
+    item.quality = item.quality - item.quality;
+
     return;
   }
 
@@ -96,12 +102,6 @@ const updateQuality2 = (item: Item) => {
   }
 
   if (item.name === ItemNames.BACKSTAGE) {
-    if (item.sellIn >= 0) {
-      return;
-    }
-
-    item.quality = item.quality - item.quality;
-
     return;
   }
 
