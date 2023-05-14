@@ -43,6 +43,14 @@ const update = (item: Item) => {
 
     item.sellIn = item.sellIn - 1;
 
+    if (item.sellIn >= 0) {
+      return;
+    }
+
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
+    }
+
     return;
   }
 
@@ -84,14 +92,6 @@ const updateQuality2 = (item: Item) => {
   }
 
   if (item.name === ItemNames.AGED_BRIE) {
-    if (item.sellIn >= 0) {
-      return;
-    }
-
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-    }
-
     return;
   }
 
