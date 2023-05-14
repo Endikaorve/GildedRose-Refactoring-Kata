@@ -21,8 +21,7 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      updateQuality1(item);
-      updateSellIn(item);
+      update(item);
       updateQuality2(item);
     });
 
@@ -30,7 +29,7 @@ export class GildedRose {
   }
 }
 
-const updateQuality1 = (item: Item) => {
+const update = (item: Item) => {
   if (item.name === ItemNames.SULFURAS) {
     return;
   }
@@ -77,20 +76,6 @@ const updateQuality1 = (item: Item) => {
   }
 
   item.sellIn = item.sellIn - 1;
-};
-
-const updateSellIn = (item: Item) => {
-  if (item.name === ItemNames.SULFURAS) {
-    return;
-  }
-
-  if (item.name === ItemNames.AGED_BRIE) {
-    return;
-  }
-
-  if (item.name === ItemNames.BACKSTAGE) {
-    return;
-  }
 };
 
 const updateQuality2 = (item: Item) => {
