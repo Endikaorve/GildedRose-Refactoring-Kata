@@ -72,6 +72,11 @@ const updateSellIn = (item: Item) => {
     return;
   }
 
+  if (item.name === "Aged Brie") {
+    item.sellIn = item.sellIn - 1;
+    return;
+  }
+
   item.sellIn = item.sellIn - 1;
 };
 
