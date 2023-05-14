@@ -110,11 +110,15 @@ const updateQuality2 = (item: Item) => {
     return;
   }
 
-  if (item.name != ItemNames.BACKSTAGE) {
-    if (item.quality > 0) {
-      item.quality = item.quality - 1;
-    }
-  } else {
+  if (item.name === ItemNames.BACKSTAGE) {
     item.quality = item.quality - item.quality;
+
+    return;
+  }
+
+  // Item común
+
+  if (item.quality > 0) {
+    item.quality = item.quality - 1;
   }
 };
