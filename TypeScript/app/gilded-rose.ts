@@ -73,7 +73,7 @@ const update = (item: Item) => {
       return;
     }
 
-    item.quality = item.quality - item.quality;
+    item.quality = 0;
 
     return;
   }
