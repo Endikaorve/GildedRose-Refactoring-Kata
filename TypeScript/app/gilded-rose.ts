@@ -29,22 +29,19 @@ const updateQuality1 = (item: Item) => {
     return;
   }
 
-  if (
-    item.name !== "Aged Brie" &&
-    item.name !== "Backstage passes to a TAFKAL80ETC concert"
-  ) {
-    if (item.quality > 0) {
-      item.quality = item.quality - 1;
-    }
-    return;
-  }
-
   if (item.name === "Aged Brie") {
     if (item.quality >= 50) {
       return;
     }
 
     item.quality = item.quality + 1;
+    return;
+  }
+
+  if (item.name !== "Backstage passes to a TAFKAL80ETC concert") {
+    if (item.quality > 0) {
+      item.quality = item.quality - 1;
+    }
     return;
   }
 
