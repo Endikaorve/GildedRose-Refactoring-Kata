@@ -1,3 +1,9 @@
+enum ItemNames {
+  SULFURAS = "Sulfuras, Hand of Ragnaros",
+  AGED_BRIE = "Aged Brie",
+  BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert",
+}
+
 export class Item {
   name: string;
   sellIn: number;
@@ -25,11 +31,11 @@ export class GildedRose {
 }
 
 const updateQuality1 = (item: Item) => {
-  if (item.name === "Sulfuras, Hand of Ragnaros") {
+  if (item.name === ItemNames.SULFURAS) {
     return;
   }
 
-  if (item.name === "Aged Brie") {
+  if (item.name === ItemNames.AGED_BRIE) {
     if (item.quality >= 50) {
       return;
     }
@@ -39,7 +45,7 @@ const updateQuality1 = (item: Item) => {
     return;
   }
 
-  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+  if (item.name === ItemNames.BACKSTAGE) {
     if (item.quality >= 50) {
       return;
     }
@@ -68,16 +74,16 @@ const updateQuality1 = (item: Item) => {
 };
 
 const updateSellIn = (item: Item) => {
-  if (item.name === "Sulfuras, Hand of Ragnaros") {
+  if (item.name === ItemNames.SULFURAS) {
     return;
   }
 
-  if (item.name === "Aged Brie") {
+  if (item.name === ItemNames.AGED_BRIE) {
     item.sellIn = item.sellIn - 1;
     return;
   }
 
-  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+  if (item.name === ItemNames.BACKSTAGE) {
     item.sellIn = item.sellIn - 1;
     return;
   }
@@ -89,10 +95,10 @@ const updateSellIn = (item: Item) => {
 
 const updateQuality2 = (item: Item) => {
   if (item.sellIn < 0) {
-    if (item.name != "Aged Brie") {
-      if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
+    if (item.name != ItemNames.AGED_BRIE) {
+      if (item.name != ItemNames.BACKSTAGE) {
         if (item.quality > 0) {
-          if (item.name != "Sulfuras, Hand of Ragnaros") {
+          if (item.name != ItemNames.SULFURAS) {
             item.quality = item.quality - 1;
           }
         }
