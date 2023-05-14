@@ -2,6 +2,7 @@ enum ItemNames {
   SULFURAS = "Sulfuras, Hand of Ragnaros",
   AGED_BRIE = "Aged Brie",
   BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert",
+  CONJURED = "Conjured",
 }
 
 export class Item {
@@ -28,14 +29,21 @@ export class GildedRose {
   }
 }
 
-const updaters = {
-  [ItemNames.SULFURAS]: updateSulfuras,
-  [ItemNames.AGED_BRIE]: updateAgedBrie,
-  [ItemNames.BACKSTAGE]: updateBackstage,
-};
-
 function getUpdater(item: Item) {
-  return updaters[item.name] ?? updateCommon;
+  if (item.name === ItemNames.SULFURAS) {
+    return updateSulfuras;
+  }
+  if (item.name === ItemNames.AGED_BRIE) {
+    return updateAgedBrie;
+  }
+  if (item.name === ItemNames.BACKSTAGE) {
+    return updateBackstage;
+  }
+  if (item.name.includes(ItemNames.CONJURED)) {
+    return updateConjured;
+  }
+
+  return updateCommon;
 }
 
 function updateSulfuras(item: Item) {
@@ -85,6 +93,22 @@ function updateCommon(item: Item) {
   decreaseQuality(item);
 
   if (hasSellInExpired(item)) {
+    decreaseQuality(item);
+  }
+
+  if (isLowerThanMinQuality(item)) {
+    setMinQuality(item);
+  }
+}
+
+function updateConjured(item: Item) {
+  decreaseSellIn(item);
+
+  decreaseQuality(item);
+  decreaseQuality(item);
+
+  if (hasSellInExpired(item)) {
+    decreaseQuality(item);
     decreaseQuality(item);
   }
 
