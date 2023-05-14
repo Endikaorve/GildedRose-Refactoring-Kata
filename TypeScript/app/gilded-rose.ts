@@ -5,6 +5,9 @@ enum ItemNames {
   CONJURED = "Conjured",
 }
 
+const MIN_QUALITY = 0;
+const MAX_QUALITY = 50;
+
 export class Item {
   name: string;
   sellIn: number;
@@ -136,17 +139,17 @@ const hasSellInExpired = (item: Item) => {
 };
 
 const isLowerThanMinQuality = (item: Item) => {
-  return item.quality < 0;
+  return item.quality < MIN_QUALITY;
 };
 
 const setMinQuality = (item: Item) => {
-  item.quality = 0;
+  item.quality = MIN_QUALITY;
 };
 
 const isHigherThenMaxQuality = (item: Item) => {
-  return item.quality > 50;
+  return item.quality > MAX_QUALITY;
 };
 
 const setMaxQuality = (item: Item) => {
-  item.quality = 50;
+  item.quality = MAX_QUALITY;
 };
