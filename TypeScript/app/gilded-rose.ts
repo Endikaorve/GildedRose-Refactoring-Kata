@@ -16,27 +16,23 @@ export class Item {
   }
 }
 
-export class GildedRose {
-  constructor(public items: Item[] = []) {}
-
-  updateQuality() {
-    this.items.forEach((item) => {
-      update(item);
-    });
-
-    return this.items;
-  }
-}
-
 const updaters = {
   [ItemNames.SULFURAS]: updateSulfuras,
   [ItemNames.AGED_BRIE]: updateAgedBrie,
   [ItemNames.BACKSTAGE]: updateBackstage,
 };
 
-const update = (item: Item) => {
-  (updaters[item.name] ?? updateCommon)(item);
-};
+export class GildedRose {
+  constructor(public items: Item[] = []) {}
+
+  updateQuality() {
+    this.items.forEach((item) => {
+      (updaters[item.name] ?? updateCommon)(item);
+    });
+
+    return this.items;
+  }
+}
 
 function updateSulfuras(item: Item) {
   return;
