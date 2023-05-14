@@ -77,6 +77,13 @@ const updateSellIn = (item: Item) => {
     return;
   }
 
+  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+    item.sellIn = item.sellIn - 1;
+    return;
+  }
+
+  // Item común
+
   item.sellIn = item.sellIn - 1;
 };
 
