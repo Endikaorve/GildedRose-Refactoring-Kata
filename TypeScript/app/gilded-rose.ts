@@ -52,6 +52,11 @@ const update = (item: Item) => {
   if (item.name === ItemNames.BACKSTAGE) {
     item.sellIn = item.sellIn - 1;
 
+    if (item.sellIn < 0) {
+      item.quality = 0;
+      return;
+    }
+
     if (item.quality >= 50) {
       return;
     }
@@ -68,12 +73,6 @@ const update = (item: Item) => {
         item.quality = item.quality + 1;
       }
     }
-
-    if (item.sellIn >= 0) {
-      return;
-    }
-
-    item.quality = 0;
 
     return;
   }
