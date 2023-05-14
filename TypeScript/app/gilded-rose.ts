@@ -30,6 +30,7 @@ export class GildedRose {
 
 const update = (item: Item) => {
   if (item.name === ItemNames.SULFURAS) {
+    updateSulfuras(item);
     return;
   }
 
@@ -88,6 +89,12 @@ const update = (item: Item) => {
     setMinQuality(item);
   }
 };
+
+const updateSulfuras = (item: Item) => {
+  return;
+};
+
+// UTILIDADES
 
 const decreaseSellIn = (item: Item) => {
   item.sellIn--;
