@@ -34,26 +34,26 @@ const update = (item: Item) => {
   }
 
   if (item.name === ItemNames.AGED_BRIE) {
-    item.sellIn = item.sellIn - 1;
+    decreaseSellIn(item);
 
     increaseQuality(item);
 
-    if (item.sellIn < 0) {
+    if (hasSellInExpired(item)) {
       increaseQuality(item);
     }
 
-    if (item.quality > 50) {
-      item.quality = 50;
+    if (isHigherThenMaxQuality(item)) {
+      setMaxQuality(item);
     }
 
     return;
   }
 
   if (item.name === ItemNames.BACKSTAGE) {
-    item.sellIn = item.sellIn - 1;
+    decreaseSellIn(item);
 
-    if (item.sellIn < 0) {
-      item.quality = 0;
+    if (hasSellInExpired(item)) {
+      setMinQuality(item);
       return;
     }
 
@@ -67,8 +67,8 @@ const update = (item: Item) => {
       increaseQuality(item);
     }
 
-    if (item.quality > 50) {
-      item.quality = 50;
+    if (isHigherThenMaxQuality(item)) {
+      setMaxQuality(item);
     }
 
     return;
@@ -76,17 +76,21 @@ const update = (item: Item) => {
 
   // Item común
 
-  item.sellIn = item.sellIn - 1;
+  decreaseSellIn(item);
 
   decreaseQuality(item);
 
-  if (item.sellIn < 0) {
+  if (hasSellInExpired(item)) {
     decreaseQuality(item);
   }
 
-  if (item.quality < 0) {
-    item.quality = 0;
+  if (isLowerThanMinQuality(item)) {
+    setMinQuality(item);
   }
+};
+
+const decreaseSellIn = (item: Item) => {
+  item.sellIn--;
 };
 
 const increaseQuality = (item: Item) => {
@@ -95,4 +99,24 @@ const increaseQuality = (item: Item) => {
 
 const decreaseQuality = (item: Item) => {
   item.quality--;
+};
+
+const hasSellInExpired = (item: Item) => {
+  return item.sellIn < 0;
+};
+
+const isLowerThanMinQuality = (item: Item) => {
+  return item.quality < 0;
+};
+
+const setMinQuality = (item: Item) => {
+  item.quality = 0;
+};
+
+const isHigherThenMaxQuality = (item: Item) => {
+  return item.quality > 50;
+};
+
+const setMaxQuality = (item: Item) => {
+  item.quality = 50;
 };
