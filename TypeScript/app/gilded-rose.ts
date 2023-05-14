@@ -17,24 +17,7 @@ export class GildedRose {
     this.items.forEach((item) => {
       updateQuality1(item);
       updateSellIn(item);
-
-      if (item.sellIn < 0) {
-        if (item.name != "Aged Brie") {
-          if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
-            if (item.quality > 0) {
-              if (item.name != "Sulfuras, Hand of Ragnaros") {
-                item.quality = item.quality - 1;
-              }
-            }
-          } else {
-            item.quality = item.quality - item.quality;
-          }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
+      updateQuality2(item);
     });
 
     return this.items;
@@ -73,5 +56,25 @@ const updateQuality1 = (item: Item) => {
 const updateSellIn = (item: Item) => {
   if (item.name != "Sulfuras, Hand of Ragnaros") {
     item.sellIn = item.sellIn - 1;
+  }
+};
+
+const updateQuality2 = (item: Item) => {
+  if (item.sellIn < 0) {
+    if (item.name != "Aged Brie") {
+      if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
+        if (item.quality > 0) {
+          if (item.name != "Sulfuras, Hand of Ragnaros") {
+            item.quality = item.quality - 1;
+          }
+        }
+      } else {
+        item.quality = item.quality - item.quality;
+      }
+    } else {
+      if (item.quality < 50) {
+        item.quality = item.quality + 1;
+      }
+    }
   }
 };
