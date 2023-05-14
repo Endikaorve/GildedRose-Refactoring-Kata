@@ -35,18 +35,7 @@ const update = (item: Item) => {
   }
 
   if (item.name === ItemNames.AGED_BRIE) {
-    decreaseSellIn(item);
-
-    increaseQuality(item);
-
-    if (hasSellInExpired(item)) {
-      increaseQuality(item);
-    }
-
-    if (isHigherThenMaxQuality(item)) {
-      setMaxQuality(item);
-    }
-
+    updateAgedBrie(item);
     return;
   }
 
@@ -92,6 +81,20 @@ const update = (item: Item) => {
 
 const updateSulfuras = (item: Item) => {
   return;
+};
+
+const updateAgedBrie = (item: Item) => {
+  decreaseSellIn(item);
+
+  increaseQuality(item);
+
+  if (hasSellInExpired(item)) {
+    increaseQuality(item);
+  }
+
+  if (isHigherThenMaxQuality(item)) {
+    setMaxQuality(item);
+  }
 };
 
 // UTILIDADES
