@@ -11,11 +11,7 @@ export class Item {
 }
 
 export class GildedRose {
-  items: Array<Item>;
-
-  constructor(items = [] as Array<Item>) {
-    this.items = items;
-  }
+  constructor(public items: Item[] = []) {}
 
   updateQuality() {
     this.items.forEach((item) => {
