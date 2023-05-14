@@ -90,6 +90,14 @@ const update = (item: Item) => {
   }
 
   item.sellIn = item.sellIn - 1;
+
+  if (item.sellIn >= 0) {
+    return;
+  }
+
+  if (item.quality > 0) {
+    item.quality = item.quality - 1;
+  }
 };
 
 const updateQuality2 = (item: Item) => {
@@ -106,11 +114,4 @@ const updateQuality2 = (item: Item) => {
   }
 
   // Item común
-  if (item.sellIn >= 0) {
-    return;
-  }
-
-  if (item.quality > 0) {
-    item.quality = item.quality - 1;
-  }
 };
