@@ -86,18 +86,24 @@ describe("Gilded Rose", () => {
 
     describe("Quality", () => {
       it("it upgrades 1 point per day", () => {
-        const item = updateGildedRoseWithOneItem(itemName, 20, 1);
+        const item = updateGildedRoseWithOneItem(itemName, 11, 1);
         expect(item.quality).toBe(2);
       });
 
       it("it upgrades 2 points if sellIn date is between 10 and 6 days", () => {
         const item = updateGildedRoseWithOneItem(itemName, 10, 1);
         expect(item.quality).toBe(3);
+
+        const item2 = updateGildedRoseWithOneItem(itemName, 6, 1);
+        expect(item2.quality).toBe(3);
       });
 
       it("it upgrades 3 points if sellIn date is between 5 and 1 days", () => {
         const item = updateGildedRoseWithOneItem(itemName, 5, 1);
         expect(item.quality).toBe(4);
+
+        const item2 = updateGildedRoseWithOneItem(itemName, 1, 1);
+        expect(item2.quality).toBe(4);
       });
 
       it("it drops to 0 points if sellIn date has expired", () => {
