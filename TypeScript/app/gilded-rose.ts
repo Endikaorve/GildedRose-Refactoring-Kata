@@ -120,6 +120,64 @@ function updateConjured(item: Item) {
   }
 }
 
+abstract class InventoryItem {
+  constructor(public item: Item) {}
+
+  protected decreaseSellIn = () => {
+    this.item.sellIn--;
+  };
+
+  protected increaseQuality = () => {
+    this.item.quality++;
+  };
+
+  protected decreaseQuality = () => {
+    this.item.quality--;
+  };
+
+  protected hasSellInExpired = () => {
+    return this.item.sellIn < 0;
+  };
+
+  protected isLowerThanMinQuality = () => {
+    return this.item.quality < MIN_QUALITY;
+  };
+
+  protected setMinQuality = () => {
+    this.item.quality = MIN_QUALITY;
+  };
+
+  protected isHigherThenMaxQuality = () => {
+    return this.item.quality > MAX_QUALITY;
+  };
+
+  protected setMaxQuality = () => {
+    this.item.quality = MAX_QUALITY;
+  };
+
+  abstract update();
+}
+
+class AgedBrieItem extends InventoryItem {
+  constructor(public item: Item) {
+    super(item);
+  }
+
+  update() {
+    this.decreaseSellIn();
+
+    this.increaseQuality();
+
+    if (this.hasSellInExpired()) {
+      this.increaseQuality();
+    }
+
+    if (this.isHigherThenMaxQuality()) {
+      this.setMaxQuality();
+    }
+  }
+}
+
 // UTILIDADES
 
 const decreaseSellIn = (item: Item) => {
