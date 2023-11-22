@@ -15,18 +15,18 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      updateQuality(item);
+      update(item);
     });
 
     return this.items;
   }
 }
 
-const updateQualitySulfuras = (_: Item) => {
+const updateSulfuras = (_: Item) => {
   return;
 };
 
-const updateQualityAgedBrie = (item: Item) => {
+const updateAgedBrie = (item: Item) => {
   item.sellIn = item.sellIn - 1;
 
   if (item.quality >= 50) {
@@ -42,14 +42,14 @@ const updateQualityAgedBrie = (item: Item) => {
   }
 };
 
-const updateQuality = (item: Item) => {
+const update = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
-    updateQualitySulfuras(item);
+    updateSulfuras(item);
     return;
   }
 
   if (item.name === "Aged Brie") {
-    updateQualityAgedBrie(item);
+    updateAgedBrie(item);
 
     return;
   }
