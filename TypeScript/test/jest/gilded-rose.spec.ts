@@ -124,7 +124,7 @@ describe("Gilded Rose", () => {
     });
   });
 
-  describe.skip("Conjured", () => {
+  describe("Conjured", () => {
     const itemName = "Conjured Sword";
 
     describe("SellIn", () => {

@@ -1,3 +1,6 @@
+import { Updater } from "./Updater/Updater.models";
+import { getUpdater } from "./getUpdater";
+
 export class Item {
   name: string;
   sellIn: number;
@@ -22,44 +25,7 @@ export class GildedRose {
   }
 }
 
-type Updater = (item: Item) => void;
-
-const MIN_QUALITY = 0;
-const MAX_QUALITY = 50;
-
-const getUpdater = ({ name }: Item): Updater => {
-  if (name === "Sulfuras, Hand of Ragnaros") {
-    return updaterSulfuras;
-  }
-
-  if (name === "Aged Brie") {
-    return updaterAgedBrie;
-  }
-
-  if (name === "Backstage passes to a TAFKAL80ETC concert") {
-    return updaterBackstage;
-  }
-
-  return updaterCommon;
-};
-
-const updaterSulfuras: Updater = (_: Item) => {
-  return;
-};
-
-const updaterAgedBrie: Updater = (item: Item) => {
-  decreaseSellIn(item);
-
-  increaseQuality(item);
-
-  if (hasExpired(item)) {
-    increaseQuality(item);
-  }
-
-  limitQualityIntoValidRange(item);
-};
-
-const updaterBackstage: Updater = (item: Item) => {
+export const updaterBackstage: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   if (hasExpired(item)) {
@@ -80,7 +46,7 @@ const updaterBackstage: Updater = (item: Item) => {
   limitQualityIntoValidRange(item);
 };
 
-const updaterCommon: Updater = (item: Item) => {
+export const updaterCommon: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   decreaseQuality(item);
@@ -92,19 +58,36 @@ const updaterCommon: Updater = (item: Item) => {
   limitQualityIntoValidRange(item);
 };
 
-const decreaseSellIn = (item: Item) => {
+export const updaterConjured: Updater = (item: Item) => {
+  decreaseSellIn(item);
+
+  decreaseQuality(item);
+  decreaseQuality(item);
+
+  if (hasExpired(item)) {
+    decreaseQuality(item);
+    decreaseQuality(item);
+  }
+
+  limitQualityIntoValidRange(item);
+};
+
+const MIN_QUALITY = 0;
+const MAX_QUALITY = 50;
+
+export const decreaseSellIn = (item: Item) => {
   item.sellIn -= 1;
 };
 
-const increaseQuality = (item: Item) => {
+export const increaseQuality = (item: Item) => {
   item.quality += 1;
 };
 
-const decreaseQuality = (item: Item) => {
+export const decreaseQuality = (item: Item) => {
   item.quality -= 1;
 };
 
-const limitQualityIntoValidRange = (item: Item) => {
+export const limitQualityIntoValidRange = (item: Item) => {
   if (item.quality > MAX_QUALITY) {
     item.quality = MAX_QUALITY;
   }
@@ -114,10 +97,10 @@ const limitQualityIntoValidRange = (item: Item) => {
   }
 };
 
-const setMinQuality = (item: Item) => {
+export const setMinQuality = (item: Item) => {
   item.quality = MIN_QUALITY;
 };
 
-const hasExpired = (item: Item) => {
+export const hasExpired = (item: Item) => {
   return item.sellIn < 0;
 };
