@@ -11,7 +11,7 @@ export class AgedBrieItem extends AbstractItem {
 
     this.increaseQuality()
 
-    if (this.hasExpiredSellInDate()) {
+    if (this.hasExpired()) {
       this.increaseQuality()
     }
 

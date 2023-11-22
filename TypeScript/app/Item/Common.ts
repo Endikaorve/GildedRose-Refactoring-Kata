@@ -11,7 +11,7 @@ export class CommonItem extends AbstractItem {
 
     this.decreaseQuality()
 
-    if (this.hasExpiredSellInDate()) {
+    if (this.hasExpired()) {
       this.decreaseQuality()
     }
 

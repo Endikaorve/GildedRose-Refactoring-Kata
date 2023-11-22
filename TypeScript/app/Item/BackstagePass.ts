@@ -9,7 +9,7 @@ export class BackstagePassItem extends AbstractItem {
   update() {
     this.decreaseSellInDate()
 
-    if (this.hasExpiredSellInDate()) {
+    if (this.hasExpired()) {
       this.setMinQuality()
       return
     }

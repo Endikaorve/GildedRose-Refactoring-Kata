@@ -27,7 +27,7 @@ export abstract class AbstractItem {
     this.item.quality = Math.max(MIN_QUALITY, Math.min(MAX_QUALITY, this.item.quality))
   }
 
-  protected hasExpiredSellInDate() {
+  protected hasExpired() {
     return this.item.sellIn < 0
   }
 

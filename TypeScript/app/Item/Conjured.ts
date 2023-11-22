@@ -11,7 +11,7 @@ export class ConjuredItem extends AbstractItem {
 
     this.decreaseQuality(2)
 
-    if (this.hasExpiredSellInDate()) {
+    if (this.hasExpired()) {
       this.decreaseQuality(2)
     }
 
