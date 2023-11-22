@@ -24,6 +24,9 @@ export class GildedRose {
 
 type Updater = (item: Item) => void;
 
+const MIN_QUALITY = 0;
+const MAX_QUALITY = 50;
+
 const getUpdater = ({ name }: Item): Updater => {
   if (name === "Sulfuras, Hand of Ragnaros") {
     return updaterSulfuras;
@@ -102,13 +105,17 @@ const decreaseQuality = (item: Item) => {
 };
 
 const limitQualityIntoValidRange = (item: Item) => {
-  if (item.quality > 50) {
-    item.quality = 50;
+  if (item.quality > MAX_QUALITY) {
+    item.quality = MAX_QUALITY;
   }
 
-  if (item.quality < 0) {
-    item.quality = 0;
+  if (item.quality < MIN_QUALITY) {
+    setMinQuality(item);
   }
+};
+
+const setMinQuality = (item: Item) => {
+  item.quality = MIN_QUALITY;
 };
 
 const hasExpired = (item: Item) => {
