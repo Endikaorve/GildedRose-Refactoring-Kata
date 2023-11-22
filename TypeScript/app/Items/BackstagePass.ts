@@ -20,7 +20,7 @@ export class BackstagePassItem extends InventoryItem {
       this.increaseQualityBy(1)
     }
 
-    if (this.isTheConcertDueInLessThan(6)) {
+    if (this.isTheConcertDueInLessThan(5)) {
       this.increaseQualityBy(1)
     }
 
