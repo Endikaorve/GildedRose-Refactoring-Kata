@@ -42,6 +42,32 @@ const updateAgedBrie = (item: Item) => {
   }
 };
 
+const updateBackstage = (item: Item) => {
+  item.sellIn = item.sellIn - 1;
+
+  if (item.quality >= 50) {
+    return;
+  }
+
+  item.quality = item.quality + 1;
+
+  if (item.sellIn < 10) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
+    }
+  }
+
+  if (item.sellIn < 5) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
+    }
+  }
+
+  if (item.sellIn < 0) {
+    item.quality = 0;
+  }
+};
+
 const update = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
     updateSulfuras(item);
@@ -50,35 +76,11 @@ const update = (item: Item) => {
 
   if (item.name === "Aged Brie") {
     updateAgedBrie(item);
-
     return;
   }
 
   if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-    item.sellIn = item.sellIn - 1;
-
-    if (item.quality >= 50) {
-      return;
-    }
-
-    item.quality = item.quality + 1;
-
-    if (item.sellIn < 10) {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
-
-    if (item.sellIn < 5) {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
-
-    if (item.sellIn < 0) {
-      item.quality = 0;
-    }
-
+    updateBackstage(item);
     return;
   }
 
