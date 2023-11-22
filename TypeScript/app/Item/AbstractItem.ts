@@ -3,7 +3,7 @@ import { Item } from '../gilded-rose'
 const MIN_QUALITY = 0
 const MAX_QUALITY = 50
 
-export abstract class InventoryItem {
+export abstract class AbstractItem {
   protected constructor(public item: Item) {}
 
   protected increaseQualityBy(quantity: number) {

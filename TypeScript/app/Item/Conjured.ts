@@ -1,7 +1,7 @@
 import { Item } from '@/gilded-rose'
-import { InventoryItem } from '@/Item/InventoryItem'
+import { AbstractItem } from '@/Item/AbstractItem'
 
-export class ConjuredItem extends InventoryItem {
+export class ConjuredItem extends AbstractItem {
   constructor(item: Item) {
     super(item)
   }
