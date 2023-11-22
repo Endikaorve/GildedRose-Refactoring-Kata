@@ -41,9 +41,9 @@ export class GildedRose {
           }
         }
       }
-      if (item.name != "Sulfuras, Hand of Ragnaros") {
-        item.sellIn = item.sellIn - 1;
-      }
+
+      updateSellIn(item);
+
       if (item.sellIn < 0) {
         if (item.name != "Aged Brie") {
           if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
@@ -66,3 +66,9 @@ export class GildedRose {
     return this.items;
   }
 }
+
+const updateSellIn = (item: Item) => {
+  if (item.name != "Sulfuras, Hand of Ragnaros") {
+    item.sellIn = item.sellIn - 1;
+  }
+};
