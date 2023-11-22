@@ -15,12 +15,28 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      update(item);
+      getUpdater(item)(item);
     });
 
     return this.items;
   }
 }
+
+const getUpdater = ({ name }: Item) => {
+  if (name === "Sulfuras, Hand of Ragnaros") {
+    return updateSulfuras;
+  }
+
+  if (name === "Aged Brie") {
+    return updateAgedBrie;
+  }
+
+  if (name === "Backstage passes to a TAFKAL80ETC concert") {
+    return updateBackstage;
+  }
+
+  return updateCommon;
+};
 
 const updateSulfuras = (_: Item) => {
   return;
@@ -80,23 +96,4 @@ const updateCommon = (item: Item) => {
       item.quality = item.quality - 1;
     }
   }
-};
-
-const update = (item: Item) => {
-  if (item.name === "Sulfuras, Hand of Ragnaros") {
-    updateSulfuras(item);
-    return;
-  }
-
-  if (item.name === "Aged Brie") {
-    updateAgedBrie(item);
-    return;
-  }
-
-  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-    updateBackstage(item);
-    return;
-  }
-
-  updateCommon(item);
 };
