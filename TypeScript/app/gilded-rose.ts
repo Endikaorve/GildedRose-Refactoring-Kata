@@ -78,10 +78,10 @@ const updateBackstage = (item: Item) => {
 const updateCommon = (item: Item) => {
   decreaseSellIn(item);
 
-  item.quality = item.quality - 1;
+  decreaseQuality(item);
 
   if (hasExpired(item)) {
-    item.quality = item.quality - 1;
+    decreaseQuality(item);
   }
 
   limitQualityIntoValidRange(item);
@@ -93,6 +93,10 @@ const decreaseSellIn = (item: Item) => {
 
 const increaseQuality = (item: Item) => {
   item.quality = item.quality + 1;
+};
+
+const decreaseQuality = (item: Item) => {
+  item.quality = item.quality - 1;
 };
 
 const limitQualityIntoValidRange = (item: Item) => {
