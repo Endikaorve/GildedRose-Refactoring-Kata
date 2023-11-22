@@ -22,27 +22,29 @@ export class GildedRose {
   }
 }
 
-const getUpdater = ({ name }: Item) => {
+type Updater = (item: Item) => void;
+
+const getUpdater = ({ name }: Item): Updater => {
   if (name === "Sulfuras, Hand of Ragnaros") {
-    return updateSulfuras;
+    return updaterSulfuras;
   }
 
   if (name === "Aged Brie") {
-    return updateAgedBrie;
+    return updaterAgedBrie;
   }
 
   if (name === "Backstage passes to a TAFKAL80ETC concert") {
-    return updateBackstage;
+    return updaterBackstage;
   }
 
-  return updateCommon;
+  return updaterCommon;
 };
 
-const updateSulfuras = (_: Item) => {
+const updaterSulfuras: Updater = (_: Item) => {
   return;
 };
 
-const updateAgedBrie = (item: Item) => {
+const updaterAgedBrie: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   increaseQuality(item);
@@ -54,7 +56,7 @@ const updateAgedBrie = (item: Item) => {
   limitQualityIntoValidRange(item);
 };
 
-const updateBackstage = (item: Item) => {
+const updaterBackstage: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   if (hasExpired(item)) {
@@ -75,7 +77,7 @@ const updateBackstage = (item: Item) => {
   limitQualityIntoValidRange(item);
 };
 
-const updateCommon = (item: Item) => {
+const updaterCommon: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   decreaseQuality(item);
