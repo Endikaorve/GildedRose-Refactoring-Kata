@@ -9,10 +9,10 @@ export class ConjuredItem extends AbstractItem {
   update() {
     this.decreaseSellInDate()
 
-    this.decreaseQualityBy(2)
+    this.decreaseQuality(2)
 
     if (this.hasExpiredSellInDate()) {
-      this.decreaseQualityBy(2)
+      this.decreaseQuality(2)
     }
 
     this.forceQualityIntoValidRange()

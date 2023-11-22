@@ -9,10 +9,10 @@ export class CommonItem extends AbstractItem {
   update() {
     this.decreaseSellInDate()
 
-    this.decreaseQualityBy(1)
+    this.decreaseQuality()
 
     if (this.hasExpiredSellInDate()) {
-      this.decreaseQualityBy(1)
+      this.decreaseQuality()
     }
 
     this.forceQualityIntoValidRange()

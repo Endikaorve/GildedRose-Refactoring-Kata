@@ -6,18 +6,17 @@ const MAX_QUALITY = 50
 export abstract class AbstractItem {
   protected constructor(public item: Item) {}
 
-  protected increaseQuality() {
-    this.item.quality += 1
-  }
-
-  protected decreaseQualityBy(quantity: number) {
-    this.item.quality -= quantity
-  }
-
   protected decreaseSellInDate() {
     this.item.sellIn -= 1
   }
 
+  protected increaseQuality() {
+    this.item.quality += 1
+  }
+
+  protected decreaseQuality(quality: number = 1) {
+    this.item.quality -= quality
+  }
   protected setMinQuality() {
     this.item.quality = MIN_QUALITY
   }
