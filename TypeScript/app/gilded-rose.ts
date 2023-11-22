@@ -63,7 +63,7 @@ const updaterBackstage: Updater = (item: Item) => {
   decreaseSellIn(item);
 
   if (hasExpired(item)) {
-    item.quality = 0;
+    setMinQuality(item);
     return;
   }
 
@@ -93,15 +93,15 @@ const updaterCommon: Updater = (item: Item) => {
 };
 
 const decreaseSellIn = (item: Item) => {
-  item.sellIn = item.sellIn - 1;
+  item.sellIn -= 1;
 };
 
 const increaseQuality = (item: Item) => {
-  item.quality = item.quality + 1;
+  item.quality += 1;
 };
 
 const decreaseQuality = (item: Item) => {
-  item.quality = item.quality - 1;
+  item.quality -= 1;
 };
 
 const limitQualityIntoValidRange = (item: Item) => {
