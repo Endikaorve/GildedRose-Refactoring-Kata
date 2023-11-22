@@ -8,7 +8,7 @@ import {
 } from "./Updater";
 import { Item } from "./gilded-rose";
 
-export const getUpdater = ({ name }: Item): Updater => {
+export const createUpdater = ({ name }: Item): Updater => {
   if (name === "Sulfuras, Hand of Ragnaros") {
     return updaterSulfuras;
   }

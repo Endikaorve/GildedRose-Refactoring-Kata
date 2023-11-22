@@ -1,4 +1,4 @@
-import { getUpdater } from "./getUpdater";
+import { createUpdater } from "./createUpdater";
 
 export class Item {
   name: string;
@@ -17,7 +17,7 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      getUpdater(item)(item);
+      createUpdater(item)(item);
     });
 
     return this.items;
