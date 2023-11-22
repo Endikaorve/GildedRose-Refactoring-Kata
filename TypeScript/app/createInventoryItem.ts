@@ -1,6 +1,7 @@
 import { Item } from './gilded-rose'
 import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem, AbstractItem } from './Item'
 
+// Patrón Factory
 export const createInventoryItem = (item: Item): AbstractItem => new (getItemClass(item))(item)
 
 const getItemClass = ({ name }: Item) => {
