@@ -51,9 +51,7 @@ const updateAgedBrie = (item: Item) => {
     increaseQuality(item);
   }
 
-  if (item.quality > 50) {
-    item.quality = 50;
-  }
+  limitQualityIntoValidRange(item);
 };
 
 const updateBackstage = (item: Item) => {
@@ -74,9 +72,7 @@ const updateBackstage = (item: Item) => {
     increaseQuality(item);
   }
 
-  if (item.quality > 50) {
-    item.quality = 50;
-  }
+  limitQualityIntoValidRange(item);
 };
 
 const updateCommon = (item: Item) => {
@@ -88,9 +84,7 @@ const updateCommon = (item: Item) => {
     item.quality = item.quality - 1;
   }
 
-  if (item.quality < 0) {
-    item.quality = 0;
-  }
+  limitQualityIntoValidRange(item);
 };
 
 const decreaseSellIn = (item: Item) => {
@@ -99,6 +93,16 @@ const decreaseSellIn = (item: Item) => {
 
 const increaseQuality = (item: Item) => {
   item.quality = item.quality + 1;
+};
+
+const limitQualityIntoValidRange = (item: Item) => {
+  if (item.quality > 50) {
+    item.quality = 50;
+  }
+
+  if (item.quality < 0) {
+    item.quality = 0;
+  }
 };
 
 const hasExpired = (item: Item) => {
