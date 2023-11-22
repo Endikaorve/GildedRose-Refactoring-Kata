@@ -25,53 +25,6 @@ export class GildedRose {
   }
 }
 
-export const updaterBackstage: Updater = (item: Item) => {
-  decreaseSellIn(item);
-
-  if (hasExpired(item)) {
-    setMinQuality(item);
-    return;
-  }
-
-  increaseQuality(item);
-
-  if (item.sellIn < 10) {
-    increaseQuality(item);
-  }
-
-  if (item.sellIn < 5) {
-    increaseQuality(item);
-  }
-
-  limitQualityIntoValidRange(item);
-};
-
-export const updaterCommon: Updater = (item: Item) => {
-  decreaseSellIn(item);
-
-  decreaseQuality(item);
-
-  if (hasExpired(item)) {
-    decreaseQuality(item);
-  }
-
-  limitQualityIntoValidRange(item);
-};
-
-export const updaterConjured: Updater = (item: Item) => {
-  decreaseSellIn(item);
-
-  decreaseQuality(item);
-  decreaseQuality(item);
-
-  if (hasExpired(item)) {
-    decreaseQuality(item);
-    decreaseQuality(item);
-  }
-
-  limitQualityIntoValidRange(item);
-};
-
 const MIN_QUALITY = 0;
 const MAX_QUALITY = 50;
 
