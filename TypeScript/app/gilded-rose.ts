@@ -43,7 +43,7 @@ const updateSulfuras = (_: Item) => {
 };
 
 const updateAgedBrie = (item: Item) => {
-  item.sellIn = item.sellIn - 1;
+  decreaseSellIn(item);
 
   if (item.quality >= 50) {
     return;
@@ -59,7 +59,7 @@ const updateAgedBrie = (item: Item) => {
 };
 
 const updateBackstage = (item: Item) => {
-  item.sellIn = item.sellIn - 1;
+  decreaseSellIn(item);
 
   if (item.quality >= 50) {
     return;
@@ -85,7 +85,7 @@ const updateBackstage = (item: Item) => {
 };
 
 const updateCommon = (item: Item) => {
-  item.sellIn = item.sellIn - 1;
+  decreaseSellIn(item);
 
   if (item.quality > 0) {
     item.quality = item.quality - 1;
@@ -96,4 +96,8 @@ const updateCommon = (item: Item) => {
       item.quality = item.quality - 1;
     }
   }
+};
+
+const decreaseSellIn = (item: Item) => {
+  item.sellIn = item.sellIn - 1;
 };
