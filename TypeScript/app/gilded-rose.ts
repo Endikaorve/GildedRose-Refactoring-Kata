@@ -61,6 +61,11 @@ const updateAgedBrie = (item: Item) => {
 const updateBackstage = (item: Item) => {
   decreaseSellIn(item);
 
+  if (item.sellIn < 0) {
+    item.quality = 0;
+    return;
+  }
+
   if (item.quality >= 50) {
     return;
   }
@@ -77,10 +82,6 @@ const updateBackstage = (item: Item) => {
     if (item.quality < 50) {
       item.quality = item.quality + 1;
     }
-  }
-
-  if (item.sellIn < 0) {
-    item.quality = 0;
   }
 };
 
