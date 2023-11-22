@@ -14,14 +14,14 @@ export class BackstagePassItem extends AbstractItem {
       return
     }
 
-    this.increaseQualityBy(1)
+    this.increaseQuality()
 
     if (this.isTheConcertDueInLessThan(10)) {
-      this.increaseQualityBy(1)
+      this.increaseQuality()
     }
 
     if (this.isTheConcertDueInLessThan(5)) {
-      this.increaseQualityBy(1)
+      this.increaseQuality()
     }
 
     this.forceQualityIntoValidRange()

@@ -9,10 +9,10 @@ export class AgedBrieItem extends AbstractItem {
   update() {
     this.decreaseSellInDate()
 
-    this.increaseQualityBy(1)
+    this.increaseQuality()
 
     if (this.hasExpiredSellInDate()) {
-      this.increaseQualityBy(1)
+      this.increaseQuality()
     }
 
     this.forceQualityIntoValidRange()
