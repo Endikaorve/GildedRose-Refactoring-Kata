@@ -75,10 +75,6 @@ const updateQuality1 = (item: Item) => {
 };
 
 const updateQuality2 = (item: Item) => {
-  if (item.name === "Sulfuras, Hand of Ragnaros") {
-    return;
-  }
-
   if (item.name === "Aged Brie") {
     if (item.sellIn >= 0) {
       return;
