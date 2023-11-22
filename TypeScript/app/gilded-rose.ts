@@ -49,11 +49,11 @@ const updateAgedBrie = (item: Item) => {
     return;
   }
 
-  item.quality = item.quality + 1;
+  increaseQuality(item);
 
   if (item.sellIn < 0) {
     if (item.quality < 50) {
-      item.quality = item.quality + 1;
+      increaseQuality(item);
     }
   }
 };
@@ -70,17 +70,17 @@ const updateBackstage = (item: Item) => {
     return;
   }
 
-  item.quality = item.quality + 1;
+  increaseQuality(item);
 
   if (item.sellIn < 10) {
     if (item.quality < 50) {
-      item.quality = item.quality + 1;
+      increaseQuality(item);
     }
   }
 
   if (item.sellIn < 5) {
     if (item.quality < 50) {
-      item.quality = item.quality + 1;
+      increaseQuality(item);
     }
   }
 };
@@ -101,4 +101,8 @@ const updateCommon = (item: Item) => {
 
 const decreaseSellIn = (item: Item) => {
   item.sellIn = item.sellIn - 1;
+};
+
+const increaseQuality = (item: Item) => {
+  item.quality = item.quality + 1;
 };
