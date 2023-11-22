@@ -16,8 +16,7 @@ export class GildedRose {
   updateQuality() {
     this.items.forEach((item) => {
       updateSellIn(item);
-      updateQuality1(item);
-      updateQuality2(item);
+      updateQuality(item);
     });
 
     return this.items;
@@ -32,7 +31,7 @@ const updateSellIn = (item: Item) => {
   item.sellIn = item.sellIn - 1;
 };
 
-const updateQuality1 = (item: Item) => {
+const updateQuality = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
     return;
   }
@@ -88,13 +87,5 @@ const updateQuality1 = (item: Item) => {
     if (item.quality > 0) {
       item.quality = item.quality - 1;
     }
-  }
-};
-
-const updateQuality2 = (item: Item) => {
-  if (item.name === "Aged Brie") {
-  }
-
-  if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
   }
 };
