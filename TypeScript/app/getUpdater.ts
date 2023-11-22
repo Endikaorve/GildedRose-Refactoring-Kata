@@ -1,9 +1,11 @@
-import { updaterAgedBrie } from "./Updater/AgedBrie";
-import { updaterBackstage } from "./Updater/Backstage";
-import { updaterCommon } from "./Updater/Common";
-import { updaterConjured } from "./Updater/Conjured";
-import { updaterSulfuras } from "./Updater/Sulfuras";
-import { Updater } from "./Updater/Updater.models";
+import {
+  Updater,
+  updaterAgedBrie,
+  updaterBackstage,
+  updaterCommon,
+  updaterConjured,
+  updaterSulfuras,
+} from "./Updater";
 import { Item } from "./gilded-rose";
 
 export const getUpdater = ({ name }: Item): Updater => {

@@ -5,7 +5,7 @@ import {
   hasExpired,
   limitQualityIntoValidRange,
 } from "@/gilded-rose";
-import { Updater } from "./Updater.models";
+import { Updater } from "./domain/Updater";
 
 export const updaterCommon: Updater = (item: Item) => {
   decreaseSellIn(item);

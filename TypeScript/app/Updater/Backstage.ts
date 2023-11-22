@@ -6,7 +6,7 @@ import {
   limitQualityIntoValidRange,
   setMinQuality,
 } from "@/gilded-rose";
-import { Updater } from "./Updater.models";
+import { Updater } from "./domain/Updater";
 
 export const updaterBackstage: Updater = (item: Item) => {
   decreaseSellIn(item);

@@ -5,7 +5,7 @@ import {
   increaseQuality,
   limitQualityIntoValidRange,
 } from "@/gilded-rose";
-import { Updater } from "./Updater.models";
+import { Updater } from "./domain/Updater";
 
 export const updaterAgedBrie: Updater = (item: Item) => {
   decreaseSellIn(item);
