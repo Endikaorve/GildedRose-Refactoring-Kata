@@ -15,8 +15,8 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      updateQuality1(item);
       updateSellIn(item);
+      updateQuality1(item);
       updateQuality2(item);
     });
 
@@ -54,12 +54,12 @@ const updateQuality1 = (item: Item) => {
 
     item.quality = item.quality + 1;
 
-    if (item.sellIn < 11) {
+    if (item.sellIn < 10) {
       if (item.quality < 50) {
         item.quality = item.quality + 1;
       }
     }
-    if (item.sellIn < 6) {
+    if (item.sellIn < 5) {
       if (item.quality < 50) {
         item.quality = item.quality + 1;
       }
