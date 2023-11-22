@@ -15,19 +15,12 @@ export class GildedRose {
 
   updateQuality() {
     this.items.forEach((item) => {
-      updateSellIn(item);
       updateQuality(item);
     });
 
     return this.items;
   }
 }
-
-const updateSellIn = (item: Item) => {
-  if (item.name === "Sulfuras, Hand of Ragnaros") {
-    return;
-  }
-};
 
 const updateQuality = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
