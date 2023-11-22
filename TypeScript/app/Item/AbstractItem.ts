@@ -17,6 +17,7 @@ export abstract class AbstractItem {
   protected decreaseQuality(quality: number = 1) {
     this.item.quality -= quality
   }
+
   protected setMinQuality() {
     this.item.quality = MIN_QUALITY
   }
