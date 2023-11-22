@@ -82,14 +82,14 @@ const updateBackstage = (item: Item) => {
 const updateCommon = (item: Item) => {
   decreaseSellIn(item);
 
-  if (item.quality > 0) {
+  item.quality = item.quality - 1;
+
+  if (hasExpired(item)) {
     item.quality = item.quality - 1;
   }
 
-  if (hasExpired(item)) {
-    if (item.quality > 0) {
-      item.quality = item.quality - 1;
-    }
+  if (item.quality < 0) {
+    item.quality = 0;
   }
 };
 
