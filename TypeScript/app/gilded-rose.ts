@@ -73,9 +73,10 @@ const updateQuality1 = (item: Item) => {
         }
       }
     }
-  } else {
-    if (item.quality > 0) {
-      item.quality = item.quality - 1;
-    }
+    return;
+  }
+
+  if (item.quality > 0) {
+    item.quality = item.quality - 1;
   }
 };
