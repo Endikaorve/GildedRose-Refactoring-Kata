@@ -22,8 +22,13 @@ export class GildedRose {
   }
 }
 
+const updateQualitySulfuras = (_: Item) => {
+  return;
+};
+
 const updateQuality = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
+    updateQualitySulfuras(item);
     return;
   }
 
