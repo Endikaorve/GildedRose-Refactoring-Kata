@@ -7,7 +7,7 @@ export class CommonItem extends AbstractItem {
   }
 
   update() {
-    this.decreaseSellInDate()
+    this.decreaseSellIn()
 
     this.decreaseQuality()
 

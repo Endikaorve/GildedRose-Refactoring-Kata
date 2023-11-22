@@ -7,7 +7,7 @@ const MAX_QUALITY = 50
 export abstract class AbstractItem {
   protected constructor(public item: Item) {}
 
-  protected decreaseSellInDate() {
+  protected decreaseSellIn() {
     this.item.sellIn -= 1
   }
 

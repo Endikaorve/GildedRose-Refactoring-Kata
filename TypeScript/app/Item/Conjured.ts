@@ -7,7 +7,7 @@ export class ConjuredItem extends AbstractItem {
   }
 
   update() {
-    this.decreaseSellInDate()
+    this.decreaseSellIn()
 
     this.decreaseQuality(2)
 
