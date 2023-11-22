@@ -79,11 +79,11 @@ const updateQuality2 = (item: Item) => {
     return;
   }
 
-  if (item.sellIn >= 0) {
-    return;
-  }
-
   if (item.name === "Aged Brie") {
+    if (item.sellIn >= 0) {
+      return;
+    }
+
     if (item.quality < 50) {
       item.quality = item.quality + 1;
     }
@@ -91,10 +91,18 @@ const updateQuality2 = (item: Item) => {
   }
 
   if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+    if (item.sellIn >= 0) {
+      return;
+    }
+
     item.quality = item.quality - item.quality;
   }
 
   // Item común
+  if (item.sellIn >= 0) {
+    return;
+  }
+
   if (item.quality > 0) {
     item.quality = item.quality - 1;
   }
