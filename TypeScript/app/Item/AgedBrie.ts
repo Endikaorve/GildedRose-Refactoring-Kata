@@ -1,5 +1,5 @@
 import { Item } from '@/gilded-rose'
-import { InventoryItem } from '@/Items/InventoryItem'
+import { InventoryItem } from '@/Item/InventoryItem'
 
 export class AgedBrieItem extends InventoryItem {
   constructor(item: Item) {

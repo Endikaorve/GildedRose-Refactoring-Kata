@@ -1,5 +1,5 @@
 import { Item } from './gilded-rose'
-import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem } from './Items'
+import { SulfurasItem, AgedBrieItem, BackstagePassItem, CommonItem, ConjuredItem } from './Item'
 
 export const createInventoryItem = (item: Item) => {
   return new (getItemClass(item.name))(item)
