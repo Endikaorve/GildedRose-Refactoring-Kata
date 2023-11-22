@@ -51,7 +51,7 @@ const updateAgedBrie = (item: Item) => {
 
   increaseQuality(item);
 
-  if (item.sellIn < 0) {
+  if (hasExpired(item)) {
     if (item.quality < 50) {
       increaseQuality(item);
     }
@@ -61,7 +61,7 @@ const updateAgedBrie = (item: Item) => {
 const updateBackstage = (item: Item) => {
   decreaseSellIn(item);
 
-  if (item.sellIn < 0) {
+  if (hasExpired(item)) {
     item.quality = 0;
     return;
   }
@@ -92,7 +92,7 @@ const updateCommon = (item: Item) => {
     item.quality = item.quality - 1;
   }
 
-  if (item.sellIn < 0) {
+  if (hasExpired(item)) {
     if (item.quality > 0) {
       item.quality = item.quality - 1;
     }
@@ -105,4 +105,8 @@ const decreaseSellIn = (item: Item) => {
 
 const increaseQuality = (item: Item) => {
   item.quality = item.quality + 1;
+};
+
+const hasExpired = (item: Item) => {
+  return item.sellIn < 0;
 };
