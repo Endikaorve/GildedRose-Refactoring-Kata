@@ -27,8 +27,6 @@ const updateSellIn = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
     return;
   }
-
-  item.sellIn = item.sellIn - 1;
 };
 
 const updateQuality = (item: Item) => {
@@ -37,6 +35,8 @@ const updateQuality = (item: Item) => {
   }
 
   if (item.name === "Aged Brie") {
+    item.sellIn = item.sellIn - 1;
+
     if (item.quality >= 50) {
       return;
     }
@@ -53,6 +53,8 @@ const updateQuality = (item: Item) => {
   }
 
   if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+    item.sellIn = item.sellIn - 1;
+
     if (item.quality >= 50) {
       return;
     }
@@ -79,6 +81,8 @@ const updateQuality = (item: Item) => {
   }
 
   // Item común
+  item.sellIn = item.sellIn - 1;
+
   if (item.quality > 0) {
     item.quality = item.quality - 1;
   }
