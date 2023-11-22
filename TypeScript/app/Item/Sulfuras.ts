@@ -6,7 +6,5 @@ export class SulfurasItem extends AbstractItem {
     super(item)
   }
 
-  update() {
-    return
-  }
+  update() {}
 }
