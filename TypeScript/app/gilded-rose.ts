@@ -45,16 +45,14 @@ const updateSulfuras = (_: Item) => {
 const updateAgedBrie = (item: Item) => {
   decreaseSellIn(item);
 
-  if (item.quality >= 50) {
-    return;
-  }
-
   increaseQuality(item);
 
   if (hasExpired(item)) {
-    if (item.quality < 50) {
-      increaseQuality(item);
-    }
+    increaseQuality(item);
+  }
+
+  if (item.quality > 50) {
+    item.quality = 50;
   }
 };
 
