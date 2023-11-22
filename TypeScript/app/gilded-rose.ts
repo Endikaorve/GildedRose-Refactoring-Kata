@@ -14,7 +14,7 @@ export class GildedRose {
   constructor(public items: Array<Item> = []) {}
 
   updateQuality() {
-    this.items.forEach((item, i) => {
+    this.items.forEach((item) => {
       if (
         item.name != "Aged Brie" &&
         item.name != "Backstage passes to a TAFKAL80ETC concert"
