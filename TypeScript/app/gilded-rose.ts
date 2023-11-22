@@ -64,22 +64,18 @@ const updateBackstage = (item: Item) => {
     return;
   }
 
-  if (item.quality >= 50) {
-    return;
-  }
-
   increaseQuality(item);
 
   if (item.sellIn < 10) {
-    if (item.quality < 50) {
-      increaseQuality(item);
-    }
+    increaseQuality(item);
   }
 
   if (item.sellIn < 5) {
-    if (item.quality < 50) {
-      increaseQuality(item);
-    }
+    increaseQuality(item);
+  }
+
+  if (item.quality > 50) {
+    item.quality = 50;
   }
 };
 
