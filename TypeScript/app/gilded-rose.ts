@@ -26,6 +26,22 @@ const updateQualitySulfuras = (_: Item) => {
   return;
 };
 
+const updateQualityAgedBrie = (item: Item) => {
+  item.sellIn = item.sellIn - 1;
+
+  if (item.quality >= 50) {
+    return;
+  }
+
+  item.quality = item.quality + 1;
+
+  if (item.sellIn < 0) {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1;
+    }
+  }
+};
+
 const updateQuality = (item: Item) => {
   if (item.name === "Sulfuras, Hand of Ragnaros") {
     updateQualitySulfuras(item);
@@ -33,19 +49,7 @@ const updateQuality = (item: Item) => {
   }
 
   if (item.name === "Aged Brie") {
-    item.sellIn = item.sellIn - 1;
-
-    if (item.quality >= 50) {
-      return;
-    }
-
-    item.quality = item.quality + 1;
-
-    if (item.sellIn < 0) {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
+    updateQualityAgedBrie(item);
 
     return;
   }
