@@ -44,6 +44,12 @@ const updateQuality1 = (item: Item) => {
 
     item.quality = item.quality + 1;
 
+    if (item.sellIn < 0) {
+      if (item.quality < 50) {
+        item.quality = item.quality + 1;
+      }
+    }
+
     return;
   }
 
@@ -87,14 +93,6 @@ const updateQuality1 = (item: Item) => {
 
 const updateQuality2 = (item: Item) => {
   if (item.name === "Aged Brie") {
-    if (item.sellIn >= 0) {
-      return;
-    }
-
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-    }
-    return;
   }
 
   if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
