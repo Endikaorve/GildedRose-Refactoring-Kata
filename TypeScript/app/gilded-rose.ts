@@ -1,4 +1,4 @@
-import { createInventoryItem } from './createInventoryItem'
+import { createItemStrategy } from './createItemStrategy'
 
 export class Item {
   name: string
@@ -16,7 +16,7 @@ export class GildedRose {
   constructor(public items: Item[]) {}
 
   updateQuality() {
-    this.items.forEach(item => createInventoryItem(item).update())
+    this.items.forEach(item => createItemStrategy(item).update())
 
     return this.items
   }
