@@ -4,7 +4,7 @@ const MIN_QUALITY = 0
 const MAX_QUALITY = 50
 
 // Patrón Strategy
-export abstract class AbstractItem {
+export abstract class ItemStrategy {
   protected constructor(public item: Item) {}
 
   protected decreaseSellIn() {

@@ -1,4 +1,4 @@
-export { AbstractItem } from './AbstractItem'
+export { ItemStrategy } from './ItemStrategy'
 
 export { AgedBrieItem } from './AgedBrie'
 export { BackstagePassItem } from './BackstagePass'
