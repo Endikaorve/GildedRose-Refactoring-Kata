@@ -115,7 +115,7 @@ describe('Gilded Rose', () => {
         const item = updateGildedRoseWithOneItem(itemName, 15, 50)
         expect(item.quality).toBe(50)
 
-        const item2 = updateGildedRoseWithOneItem(itemName, 1, 49)
+        const item2 = updateGildedRoseWithOneItem(itemName, 6, 49)
         expect(item2.quality).toBe(50)
 
         const item3 = updateGildedRoseWithOneItem(itemName, 1, 48)
